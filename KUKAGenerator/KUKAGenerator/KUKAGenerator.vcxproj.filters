@@ -13,5 +13,78 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\data">
+      <UniqueIdentifier>{dfab9e9e-12f5-4010-bc04-0483904bd3ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\file_handling">
+      <UniqueIdentifier>{cfbab5c9-8e92-4cd6-841f-f933347848d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\math">
+      <UniqueIdentifier>{78e35169-4f10-4373-8ee0-ca5a77b8c9e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\process">
+      <UniqueIdentifier>{3b7b530b-c98c-4e68-b85a-4294d62533b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\data">
+      <UniqueIdentifier>{bfeba6f9-ee40-4ac1-8b4d-b8b07236385c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\file_handling">
+      <UniqueIdentifier>{a52c2538-4b4b-435d-8cdf-737753a669a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{906bdcb2-4b30-4b9a-ae6d-1494cb17ae40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\process">
+      <UniqueIdentifier>{fa27c247-7107-49cb-81e5-ee2fb9883a33}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="data\DataRow.h">
+      <Filter>Header Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="data\StringToDataRowConverter.h">
+      <Filter>Header Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="file_handling\IToLineFileReaderCallback.h">
+      <Filter>Header Files\file_handling</Filter>
+    </ClInclude>
+    <ClInclude Include="file_handling\ToLineFileReader.h">
+      <Filter>Header Files\file_handling</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Matrix3x3f.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Vector3f.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="process\ExampleProcessStep.h">
+      <Filter>Header Files\process</Filter>
+    </ClInclude>
+    <ClInclude Include="process\IProcessStep.h">
+      <Filter>Header Files\process</Filter>
+    </ClInclude>
+    <ClInclude Include="process\LoadInputFileProcessStep.h">
+      <Filter>Header Files\process</Filter>
+    </ClInclude>
+    <ClInclude Include="process\ProcessContext.h">
+      <Filter>Header Files\process</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="process\ExampleProcessStep.cpp">
+      <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\LoadInputFileProcessStep.cpp">
+      <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="file_handling\ToLineFileReader.cpp">
+      <Filter>Source Files\file_handling</Filter>
+    </ClCompile>
+    <ClCompile Include="data\StringToDataRowConverter.cpp">
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
