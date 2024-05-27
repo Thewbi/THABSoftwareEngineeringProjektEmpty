@@ -37,6 +37,12 @@
     <Filter Include="Source Files\process">
       <UniqueIdentifier>{fa27c247-7107-49cb-81e5-ee2fb9883a33}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Douglas_Peucker">
+      <UniqueIdentifier>{f785b583-9b74-41b4-9c23-44b799d05079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Douglas_Peucker">
+      <UniqueIdentifier>{fee34d2e-044a-4110-9863-4876cdcc2124}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data\DataRow.h">
@@ -66,6 +72,12 @@
     <ClInclude Include="process\LoadInputFileProcessStep.h">
       <Filter>Header Files\process</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\THABSoftwareEngineeringProjekt\src\RobPathEditor\RobPathEditor\Douglas_Peucker\DP.h">
+      <Filter>Header Files\Douglas_Peucker</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\THABSoftwareEngineeringProjekt\src\RobPathEditor\RobPathEditor\Douglas_Peucker\Line3D.h">
+      <Filter>Header Files\Douglas_Peucker</Filter>
+    </ClInclude>
     <ClInclude Include="process\ProcessContext.h">
       <Filter>Header Files\process</Filter>
     </ClInclude>
@@ -85,6 +97,12 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\THABSoftwareEngineeringProjekt\src\RobPathEditor\RobPathEditor\Douglas_Peucker\Line3D.cpp">
+      <Filter>Source Files\Douglas_Peucker</Filter>
+    </ClCompile>
+    <ClCompile Include="Douglas_Peucker\DP.cpp">
+      <Filter>Source Files\Douglas_Peucker</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

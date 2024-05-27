@@ -6,6 +6,7 @@
 #include <IProcessStep.h>
 #include <LoadInputFileProcessStep.h>
 #include <ProcessContext.h>
+#include "DP.h"
 
 
 using namespace std;
@@ -48,7 +49,11 @@ int main()
     //
 
     // Step 5 - Douglas Peucker (3D)
-    //
+    // The Varible DP is given the adress of process_context, the first element, the last element
+    // and the tolerance (width of the DP Line) in
+    // which the points are allowed to be without creating a new corner point
+    kuka_generator::CDP DP;
+    DP.DPRecursive(&process_context, process_context.data_rows.begin(), process_context.data_rows.end(), 5.0);
 
     // Step 6 - Umrechnung Orientierungsmatrix in Euler Winkel
     //

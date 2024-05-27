@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\wolfg\Documents\Aschaffenburg\Softwaretechnik\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\process;C:\Users\wolfg\Documents\Aschaffenburg\Softwaretechnik\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\math;C:\Users\wolfg\Documents\Aschaffenburg\Softwaretechnik\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\file_handling;C:\Users\wolfg\Documents\Aschaffenburg\Softwaretechnik\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\data;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\Douglas_Peucker;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\data;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\file_handling;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\process;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\math;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -130,6 +130,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\THABSoftwareEngineeringProjekt\src\RobPathEditor\RobPathEditor\Douglas_Peucker\DP.h" />
+    <ClInclude Include="..\..\..\..\THABSoftwareEngineeringProjekt\src\RobPathEditor\RobPathEditor\Douglas_Peucker\Line3D.h" />
     <ClInclude Include="data\DataRow.h" />
     <ClInclude Include="data\StringToDataRowConverter.h" />
     <ClInclude Include="file_handling\IToLineFileReaderCallback.h" />
@@ -142,9 +144,13 @@
     <ClInclude Include="process\ProcessContext.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\THABSoftwareEngineeringProjekt\src\RobPathEditor\RobPathEditor\Douglas_Peucker\Line3D.cpp" />
     <ClCompile Include="data\StringToDataRowConverter.cpp" />
+    <ClCompile Include="Douglas_Peucker\DP.cpp" />
     <ClCompile Include="file_handling\ToLineFileReader.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="main.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\process;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\math;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\file_handling;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\Douglas_Peucker;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\data;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="process\ExampleProcessStep.cpp" />
     <ClCompile Include="process\LoadInputFileProcessStep.cpp" />
   </ItemGroup>
