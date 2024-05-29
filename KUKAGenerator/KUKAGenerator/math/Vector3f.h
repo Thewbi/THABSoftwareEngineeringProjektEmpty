@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Line3D.h>
+
 namespace kuka_generator
 {
     /// <summary>
@@ -9,6 +11,9 @@ namespace kuka_generator
     {
 
     public:
+
+        double distanceTo(Vector3f point);
+        double distanceTo(CLine3D line);
 
         float x{ 0.0f };
         float y{ 0.0f };

@@ -104,5 +104,8 @@
     <ClCompile Include="Douglas_Peucker\DP.cpp">
       <Filter>Source Files\Douglas_Peucker</Filter>
     </ClCompile>
+    <ClCompile Include="math\Vector3f.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
