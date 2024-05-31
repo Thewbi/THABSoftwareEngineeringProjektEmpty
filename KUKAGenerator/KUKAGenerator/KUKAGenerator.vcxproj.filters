@@ -43,6 +43,12 @@
     <Filter Include="Source Files\Douglas_Peucker">
       <UniqueIdentifier>{fee34d2e-044a-4110-9863-4876cdcc2124}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Bitmap for testing">
+      <UniqueIdentifier>{33273c23-9def-4cb4-94d3-ad3ef481f4e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Bitmap for testing">
+      <UniqueIdentifier>{0d132cbc-02d2-4d45-816e-6e12c43c7ca1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data\DataRow.h">
@@ -75,11 +81,17 @@
     <ClInclude Include="..\..\..\..\THABSoftwareEngineeringProjekt\src\RobPathEditor\RobPathEditor\Douglas_Peucker\DP.h">
       <Filter>Header Files\Douglas_Peucker</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\THABSoftwareEngineeringProjekt\src\RobPathEditor\RobPathEditor\Douglas_Peucker\Line3D.h">
-      <Filter>Header Files\Douglas_Peucker</Filter>
-    </ClInclude>
     <ClInclude Include="process\ProcessContext.h">
       <Filter>Header Files\process</Filter>
+    </ClInclude>
+    <ClInclude Include="Bitmap for testing\BmpHandler.h">
+      <Filter>Header Files\Bitmap for testing</Filter>
+    </ClInclude>
+    <ClInclude Include="Bitmap for testing\bitmap_image.h">
+      <Filter>Header Files\Bitmap for testing</Filter>
+    </ClInclude>
+    <ClInclude Include="Douglas_Peucker\Line3D.h">
+      <Filter>Header Files\Douglas_Peucker</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -98,14 +110,17 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\THABSoftwareEngineeringProjekt\src\RobPathEditor\RobPathEditor\Douglas_Peucker\Line3D.cpp">
-      <Filter>Source Files\Douglas_Peucker</Filter>
-    </ClCompile>
     <ClCompile Include="Douglas_Peucker\DP.cpp">
       <Filter>Source Files\Douglas_Peucker</Filter>
     </ClCompile>
     <ClCompile Include="math\Vector3f.cpp">
       <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="Bitmap for testing\BmpHandler.cpp">
+      <Filter>Source Files\Bitmap for testing</Filter>
+    </ClCompile>
+    <ClCompile Include="Douglas_Peucker\Line3D.cpp">
+      <Filter>Source Files\Douglas_Peucker</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
