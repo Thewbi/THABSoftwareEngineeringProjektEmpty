@@ -10,11 +10,26 @@ namespace kuka_generator
 
     public:
 
-        double distanceTo(Vector3f& point);
-
         float x{ 0.0f };
         float y{ 0.0f };
         float z{ 0.0f };
+
+        /// <summary>
+        /// Default constructor
+        ///
+        /// Initializes all values x, z and z to zero.
+        /// </summary>
+        Vector3f();
+
+        /// <summary>
+        /// Constructor with coordinates
+        /// </summary>
+        /// <param name="x">x coordinate</param>
+        /// <param name="y">y coordinate</param>
+        /// <param name="z">z coordinate</param>
+        Vector3f(float x, float y, float z);
+
+        double distanceTo(Vector3f& point);
 
         float& operator[](unsigned int i)
         {
