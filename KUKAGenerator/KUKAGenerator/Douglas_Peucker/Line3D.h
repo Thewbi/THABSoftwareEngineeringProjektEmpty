@@ -1,5 +1,5 @@
-#include <Vector3f.h>
 #include <math.h>
+#include <Vector3f.h>
 
 #pragma once
 namespace kuka_generator
@@ -8,11 +8,13 @@ namespace kuka_generator
     {
     public:
         CLine3D(void);
-        CLine3D(Vector3f P1, Vector3f P2);
+        CLine3D(kuka_generator::Vector3f& P1, kuka_generator::Vector3f& P2);
         ~CLine3D(void);
 
-        Vector3f p1;
-        Vector3f p2;
+        double distanceTo(Vector3f& p);
+
+        kuka_generator::Vector3f p1;
+        kuka_generator::Vector3f p2;
 
     };
 }
