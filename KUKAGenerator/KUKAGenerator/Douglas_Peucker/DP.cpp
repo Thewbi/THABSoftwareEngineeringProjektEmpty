@@ -19,6 +19,10 @@ namespace kuka_generator
         if (ptr_PContext->data_rows.size() < 3) return;
         if (distance(startItr, endItr) == 2) return;
 
+        // if the starting point is not alive -> return
+        if (startItr->alive == 0) return;
+        if (endItr->alive == 0) return;
+
         // copying the first and the last point into two new variables
         Vector3f pStart; Vector3f pEnd;
         pStart.x = startItr->position_filtered.x;
@@ -44,7 +48,7 @@ namespace kuka_generator
 
             // calculate the distance from each point to the line to find out which point is the one
             // with the greatest distance
-            dist = line.distanceTo(itr->position);
+            dist = line.distanceTo(itr->position_filtered);
 
             // saving the information of the point with the greatest distance
             if (dist > maxDist)
@@ -54,14 +58,15 @@ namespace kuka_generator
             }
         }
 
-        // if the point with the greatest distance is in the set tolerance it gets deleted
-        // if not the point will exist further
+        // if the points are in the set tolerance they get deleted
+        // if not the points will exist further
         if (maxDist <= maxDistance)
         {
-
-            (++startItr)->alive = 0;
-
-            return;
+            for (itr = ++startItr; itr != endItr; itr++)
+            {
+                itr->alive = 0;
+            }
+            
         }
 
         // the function will call itself with new parameters
