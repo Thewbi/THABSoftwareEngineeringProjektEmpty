@@ -193,7 +193,7 @@ int main()
     copy_filter_process_step.process();
 
     //constexpr double max_distance = 99999.0;
-    constexpr double max_distance = 25.0;
+    constexpr double max_distance = 25.0; // good compression
     //constexpr double max_distance = 5.0;
     //constexpr double max_distance = 0.5;
     //constexpr double max_distance = 0.001;
