@@ -47,10 +47,13 @@ void display()
     glBegin(GL_LINE_STRIP);
     for (auto& data_row : process_context.data_rows)
     {
+        // ignore points that DouglasPeucker has removed
         if (!data_row.alive)
         {
             continue;
         }
+
+        // render the point
         glVertex3f(data_row.position_filtered.x, data_row.position_filtered.y, data_row.position_filtered.z);
     }
     glEnd();
@@ -212,14 +215,17 @@ int main()
 
     std::cout << "Total: " << total_count << " after Douglas-Peucker: " << not_deleted_count << std::endl;
 
+    // compute center of gravity of all points (3d average point)
     kuka_generator::Vector3f center;
     int count = 0;
     for (auto& data_row : process_context.data_rows)
     {
+        // ignore points that DouglasPeucker has removed
         if (!data_row.alive)
         {
             continue;
         }
+
         center += data_row.position_filtered;
         count++;
     }
@@ -227,17 +233,22 @@ int main()
     center.y /= count;
     center.z /= count;
 
+    // align all points around the origin
+    // make the point cloud fit onto the screen
     for (auto& data_row : process_context.data_rows)
     {
+        // ignore points that DouglasPeucker has removed
         if (!data_row.alive)
         {
             continue;
         }
 
+        // move the center of gravity of all points to the origin (0|0|0)
         data_row.position_filtered.x -= center.x;
         data_row.position_filtered.y -= center.y;
         data_row.position_filtered.z -= center.z;
 
+        // shrink the point cloud so that it fits onto the screen
         data_row.position_filtered.x /= 50.0;
         data_row.position_filtered.y /= 50.0;
         data_row.position_filtered.z /= 50.0;
