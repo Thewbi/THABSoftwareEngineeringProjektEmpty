@@ -140,6 +140,7 @@
     <ClInclude Include="file_handling\ToLineFileReader.h" />
     <ClInclude Include="math\Matrix3x3f.h" />
     <ClInclude Include="math\Vector3f.h" />
+    <ClInclude Include="process\CopyFilterProcessStep.h" />
     <ClInclude Include="process\ExampleProcessStep.h" />
     <ClInclude Include="process\IProcessStep.h" />
     <ClInclude Include="process\LoadInputFileProcessStep.h" />
@@ -155,6 +156,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\process;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\math;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\file_handling;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\Douglas_Peucker;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\data;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="math\Vector3f.cpp" />
+    <ClCompile Include="process\CopyFilterProcessStep.cpp" />
     <ClCompile Include="process\ExampleProcessStep.cpp" />
     <ClCompile Include="process\LoadInputFileProcessStep.cpp" />
   </ItemGroup>

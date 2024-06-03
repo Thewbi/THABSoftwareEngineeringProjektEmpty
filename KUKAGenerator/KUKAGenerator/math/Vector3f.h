@@ -46,5 +46,15 @@ namespace kuka_generator
                 return z;
             }
         }
+
+        // user-defined copy assignment
+        Vector3f& operator=(Vector3f other)
+        {
+            x = other.x;
+            y = other.y;
+            z = other.z;
+
+            return *this;
+        }
     };
 }

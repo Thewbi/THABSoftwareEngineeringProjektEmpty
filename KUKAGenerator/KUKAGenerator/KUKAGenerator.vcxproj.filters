@@ -93,6 +93,9 @@
     <ClInclude Include="Douglas_Peucker\Line3D.h">
       <Filter>Header Files\Douglas_Peucker</Filter>
     </ClInclude>
+    <ClInclude Include="process\CopyFilterProcessStep.h">
+      <Filter>Header Files\process</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="process\ExampleProcessStep.cpp">
@@ -121,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="Douglas_Peucker\Line3D.cpp">
       <Filter>Source Files\Douglas_Peucker</Filter>
+    </ClCompile>
+    <ClCompile Include="process\CopyFilterProcessStep.cpp">
+      <Filter>Source Files\process</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

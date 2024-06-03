@@ -2,13 +2,14 @@
 #include <iostream>
 #include <valarray>
 
+#include "BmpHandler.h"
+#include "DataRow.h"
+#include "DP.h"
+#include <CopyFilterProcessStep.h>
 #include <ExampleProcessStep.h>
 #include <IProcessStep.h>
 #include <LoadInputFileProcessStep.h>
 #include <ProcessContext.h>
-#include "DP.h"
-#include "BmpHandler.h"
-#include "DataRow.h"
 
 
 using namespace std;
@@ -20,17 +21,14 @@ int main()
     // It is passed from step to step. Each step is allowed to add or remove information from the context.
     kuka_generator::ProcessContext process_context;
 
-    // create a vector into which all steps are inserted,
-    // so all steps can be executed in the exact order using a for-loop
-    std::vector<kuka_generator::IProcessStep*> steps;
-
     //
     // Create all steps
     //
 
-    // example
+    // Step 0 - example step
+    //
+    // this step does nothing really
     kuka_generator::ExampleProcessStep example_process_step(process_context);
-    steps.push_back(&example_process_step);
 
     // Step 1 - read user input
     //
@@ -42,7 +40,6 @@ int main()
     // create the LoadInputFileStep and insert it into the vector
     // pass the process context into the constructor
     kuka_generator::LoadInputFileProcessStep load_input_file_process_step(process_context);
-    steps.push_back(&load_input_file_process_step);
 
     // Step 3 - Apply Filter (Position)
     //
@@ -98,17 +95,15 @@ int main()
     */
 
     // Step 5 - Douglas Peucker (3D)
+    //
+
+    kuka_generator::CopyFilterProcessStep copy_filter_process_step(process_context);
+
     // The Varible DP is given the adress of process_context, the first element, the last element
     // and the tolerance (width of the DP Line) in
     // which the points are allowed to be without creating a new corner point
 
     kuka_generator::CDP DP;
-    DP.DPRecursive(&process_context, process_context.data_rows.begin(), process_context.data_rows.end(), 5.0);
-
-    // this following line is just for TESTING PURPOSE | if the line is used (testing) the line above must be commended out
-    //DP.DPRecursive(&process_context, process_context.data_rows.begin(), it, 5.0);
-    
-
 
     // Step 6 - Umrechnung Orientierungsmatrix in Euler Winkel
     //
@@ -123,12 +118,35 @@ int main()
     // Execute the process
     //
 
-    // for-loop over all steps stored in the steps vector and execute each step
-    for (auto step : steps)
-    {
-        // run the step. The process context is already supplied when creating the process step variable via the constructor!
-        step->process();
-    }
+    example_process_step.process();
+
+    // step 2
+    load_input_file_process_step.process();
+
+    // step 5
+
+    // this is needed to have any usable data in the filtered position data.
+    // Otherwise the filtered data is just 0 and the doublas peucker will not work correctly
+    copy_filter_process_step.process();
+
+    //constexpr double max_distance = 99999.0;
+    //constexpr double max_distance = 5.0;
+    constexpr double max_distance = 0.5;
+    //constexpr double max_distance = 0.001;
+
+    std::vector<kuka_generator::DataRow>::iterator lastItr = std::prev(process_context.data_rows.end());
+    DP.DPRecursive(&process_context, process_context.data_rows.begin(), lastItr, max_distance);
+    //DP.DPRecursive(&process_context, process_context.data_rows.begin(), process_context.data_rows.end(), max_distance);
+
+    // this following line is just for TESTING PURPOSE | if the line is used (testing) the line above must be commended out
+    //DP.DPRecursive(&process_context, process_context.data_rows.begin(), it, 5.0);
+
+    size_t total_count = process_context.data_rows.size();
+
+    size_t not_deleted_count = std::count_if(std::begin(process_context.data_rows), std::end(process_context.data_rows),
+        [](const kuka_generator::DataRow& obj) { return obj.alive; });
+
+    std::cout << "Total: " << total_count << " after Douglas-Peucker: " << not_deleted_count << std::endl;
 
     return 0;
 }

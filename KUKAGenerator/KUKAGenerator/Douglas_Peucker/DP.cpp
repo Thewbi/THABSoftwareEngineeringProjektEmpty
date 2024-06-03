@@ -12,12 +12,16 @@ namespace kuka_generator
 
     }
 
-    void CDP::DPRecursive(ProcessContext* ptr_PContext, std::vector<DataRow>::iterator startItr, std::vector<DataRow>::iterator endItr, double maxDistance)
+    void CDP::DPRecursive(ProcessContext* ptr_PContext,
+        std::vector<DataRow>::iterator startItr, std::vector<DataRow>::iterator endItr, double maxDistance)
     {
 
         // if the vector has only two points -> return (in this case DP makes no sense)
         if (ptr_PContext->data_rows.size() < 3) return;
-        if (distance(startItr, endItr) == 2) return;
+
+        int iter_distance = distance(startItr, endItr);
+        //if (iter_distance == 2) return;
+        if (iter_distance == 0) return;
 
         // if the starting point is not alive -> return
         if (startItr->alive == 0) return;
@@ -34,8 +38,10 @@ namespace kuka_generator
         pEnd.z = endItr->position_filtered.z;
 
         // declaring variables and iterators
-        double dist = 0.0, maxDist = 0.0;
+        double dist = 0.0;
+        double maxDist = 0.0;
         std::vector<DataRow>::iterator maxItr, itr;
+        bool value_found = false;
 
         for (itr = startItr; itr != endItr; itr++)
         {
@@ -50,11 +56,23 @@ namespace kuka_generator
             // with the greatest distance
             dist = line.distanceTo(itr->position_filtered);
 
+            // check for NAN (not a number)
+            // https://stackoverflow.com/questions/570669/checking-if-a-double-or-float-is-nan-in-c
+            //
+            // According to the IEEE standard, NaN values have the odd property that comparisons involving them are always false.
+            // That is, for a float f, f != f will be true only if f is NaN.
+
+            if (dist != dist)
+            {
+                std::cout << "NAN" << std::endl;
+            }
+
             // saving the information of the point with the greatest distance
             if (dist > maxDist)
             {
                 maxDist = dist;
                 maxItr = itr;
+                value_found = true;
             }
         }
 
@@ -66,18 +84,22 @@ namespace kuka_generator
             {
                 itr->alive = 0;
             }
-            
+
         }
 
-        // the function will call itself with new parameters
-        // the new line that is going to be set will be between the first and the point with the greatest distance
-        // this will be done until all points that are in the tolerance will be deleted
-        // the target is to delete all unnecessary points 
-        DPRecursive(ptr_PContext, startItr, maxItr, maxDistance);
+        if (value_found)
+        {
+            // the function will call itself with new parameters
+            // the new line that is going to be set will be between the first and the point with the greatest distance
+            // this will be done until all points that are in the tolerance will be deleted
+            // the target is to delete all unnecessary points 
+            DPRecursive(ptr_PContext, startItr, maxItr, maxDistance);
 
-        // the function will call itself again to delete the points in the second half
-        // (from the point with the gratest distance and the last one) 
-        DPRecursive(ptr_PContext, maxItr, endItr, maxDistance);
+            // the function will call itself again to delete the points in the second half
+            // (from the point with the gratest distance and the last one) 
+            DPRecursive(ptr_PContext, maxItr, endItr, maxDistance);
+        }
+
     }
 
 }
