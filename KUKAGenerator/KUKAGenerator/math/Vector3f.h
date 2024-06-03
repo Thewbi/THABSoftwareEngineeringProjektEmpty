@@ -56,5 +56,14 @@ namespace kuka_generator
 
             return *this;
         }
+
+        Vector3f& operator+= (const Vector3f& other)
+        {
+            x += other.x;
+            y += other.y;
+            z += other.z;
+
+            return *this;
+        }
     };
 }

@@ -2,7 +2,16 @@
 #include <iostream>
 #include <valarray>
 
-#include "BmpHandler.h"
+//#include "BmpHandler.h"
+#include <algorithm>
+#include <cmath>
+#include <cstdlib>
+#include <fstream>
+#include <iostream>
+#include <iterator>
+#include <limits>
+#include <string>
+
 #include "DataRow.h"
 #include "DP.h"
 #include <CopyFilterProcessStep.h>
@@ -11,15 +20,155 @@
 #include <LoadInputFileProcessStep.h>
 #include <ProcessContext.h>
 
+#include <glut.h>
 
 using namespace std;
 
+// here, the process context variable is declared.
+// This is the variable that is used throughout the entire process.
+// It is passed from step to step. Each step is allowed to add or remove information from the context.
+kuka_generator::ProcessContext process_context;
+
+GLfloat light_diffuse[] = { 1.0, 0.0, 0.0, 1.0 };  /* Red diffuse light. */
+GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };  /* Infinite light location. */
+GLfloat n[6][3] = {  /* Normals for the 6 faces of a cube. */
+  {-1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {1.0, 0.0, 0.0},
+  {0.0, -1.0, 0.0}, {0.0, 0.0, 1.0}, {0.0, 0.0, -1.0} };
+GLint faces[6][4] = {  /* Vertex indices for the 6 faces of a cube. */
+  {0, 1, 2, 3}, {3, 2, 6, 7}, {7, 6, 5, 4},
+  {4, 5, 1, 0}, {5, 6, 2, 1}, {7, 4, 0, 3} };
+GLfloat v[8][3];  /* Will be filled in with X,Y,Z vertexes. */
+
+float rot = 0.0f;
+float resize_f = 1.0f;
+
+void drawBox(void)
+{
+    int i;
+
+    for (i = 0; i < 6; i++)
+    {
+        glBegin(GL_QUADS);
+        glNormal3fv(&n[i][0]);
+        glVertex3fv(&v[faces[i][0]][0]);
+        glVertex3fv(&v[faces[i][1]][0]);
+        glVertex3fv(&v[faces[i][2]][0]);
+        glVertex3fv(&v[faces[i][3]][0]);
+        glEnd();
+    }
+}
+
+void display()
+{
+    /*glClear(GL_COLOR_BUFFER_BIT);
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(-6, 6, -6, 6, -1, 1);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+    glColor3ub(255, 255, 255);
+    glBegin(GL_LINE_STRIP);
+    glVertex2f(-4.00, 0.00);
+    glVertex2f(-3.00, 2.00);
+    glVertex2f(-2.00, 0.00);
+    glVertex2f(-1.00, 2.00);
+    glVertex2f(0.0, 0.00);
+    glVertex2f(1.00, 2.00);
+    glVertex2f(2.00, 0.00);
+    glVertex2f(3.00, 2.00);
+    glVertex2f(4.00, 0.00);
+    glEnd();
+
+    glutSwapBuffers();*/
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glLoadIdentity();
+
+    gluLookAt(0.0, 0.0, -50.0,  /* eye is at (0,0,5) */
+        0.0, 0.0, 0.0,      /* center is at (0,0,0) */
+        0.0, 1.0, 0.0);      /* up is in positive Y direction */
+
+    glRotatef(rot, 1.0, 1.0, 1.0);
+
+    //drawBox();
+
+    /*glBegin(GL_LINE_STRIP);
+    glVertex2f(-4.00, 0.00);
+    glVertex2f(-3.00, 2.00);
+    glVertex2f(-2.00, 0.00);
+    glVertex2f(-1.00, 2.00);
+    glVertex2f(0.0, 0.00);
+    glVertex2f(1.00, 2.00);
+    glVertex2f(2.00, 0.00);
+    glVertex2f(3.00, 2.00);
+    glVertex2f(4.00, 0.00);
+    glEnd();*/
+
+    glBegin(GL_LINE_STRIP);
+    for (auto& data_row : process_context.data_rows)
+    {
+        if (!data_row.alive)
+        {
+            continue;
+        }
+        glVertex3f(data_row.position_filtered.x, data_row.position_filtered.y, data_row.position_filtered.z);
+    }
+    glEnd();
+
+    glFlush();
+    glutSwapBuffers();
+}
+
+void reshape(int w, int h)
+{
+    glMatrixMode(GL_PROJECTION);
+
+    glLoadIdentity();
+
+    glViewport(0, 0, w, h);
+
+    gluPerspective(/* field of view in degree */ 40.0,
+        /* aspect ratio */ resize_f * w / h,
+        /* Z near */ resize_f,
+        /* Z far */ 100 * resize_f);
+    glMatrixMode(GL_MODELVIEW);
+}
+
+void idle()
+{
+    rot += 0.03f;
+    glutPostRedisplay();
+}
+
+void init(void)
+{
+    /* Setup cube vertex data. */
+    v[0][0] = v[1][0] = v[2][0] = v[3][0] = -1;
+    v[4][0] = v[5][0] = v[6][0] = v[7][0] = 1;
+    v[0][1] = v[1][1] = v[4][1] = v[5][1] = -1;
+    v[2][1] = v[3][1] = v[6][1] = v[7][1] = 1;
+    v[0][2] = v[3][2] = v[4][2] = v[7][2] = 1;
+    v[1][2] = v[2][2] = v[5][2] = v[6][2] = -1;
+
+    /* Enable a single OpenGL light. */
+    //glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+    //glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+    //glEnable(GL_LIGHT0);
+    //glEnable(GL_LIGHTING);
+
+    /* Use depth buffering for hidden surface elimination. */
+    //glEnable(GL_DEPTH_TEST);
+
+    /* Adjust cube position to be asthetic angle. */
+    //glTranslatef(0.0, 0.0, -1.0);
+}
+
 int main()
 {
-    // here, the process context variable is declared.
-    // This is the variable that is used throughout the entire process.
-    // It is passed from step to step. Each step is allowed to add or remove information from the context.
-    kuka_generator::ProcessContext process_context;
+
 
     //
     // Create all steps
@@ -33,7 +182,9 @@ int main()
     // Step 1 - read user input
     //
     // this input file will be processed (TODO: step 1 has to produce this information!)
-    process_context.input_file = "resources\\path_01.csv";
+    //process_context.input_file = "resources\\path_01.csv";
+    //process_context.input_file = "resources\\path_02.csv";
+    process_context.input_file = "resources\\path_03.csv";
 
     // Step 2 - load input file
     // 
@@ -130,8 +281,9 @@ int main()
     copy_filter_process_step.process();
 
     //constexpr double max_distance = 99999.0;
+    constexpr double max_distance = 25.0;
     //constexpr double max_distance = 5.0;
-    constexpr double max_distance = 0.5;
+    //constexpr double max_distance = 0.5;
     //constexpr double max_distance = 0.001;
 
     std::vector<kuka_generator::DataRow>::iterator lastItr = std::prev(process_context.data_rows.end());
@@ -147,6 +299,57 @@ int main()
         [](const kuka_generator::DataRow& obj) { return obj.alive; });
 
     std::cout << "Total: " << total_count << " after Douglas-Peucker: " << not_deleted_count << std::endl;
+
+    kuka_generator::Vector3f center;
+    int count = 0;
+    for (auto& data_row : process_context.data_rows)
+    {
+        if (!data_row.alive)
+        {
+            continue;
+        }
+        center += data_row.position_filtered;
+        count++;
+    }
+    center.x /= count;
+    center.y /= count;
+    center.z /= count;
+
+    for (auto& data_row : process_context.data_rows)
+    {
+        if (!data_row.alive)
+        {
+            continue;
+        }
+
+        data_row.position_filtered.x -= center.x;
+        data_row.position_filtered.y -= center.y;
+        data_row.position_filtered.z -= center.z;
+
+        data_row.position_filtered.x /= 50.0;
+        data_row.position_filtered.y /= 50.0;
+        data_row.position_filtered.z /= 50.0;
+    }
+
+
+    // copy glut32.dll to C:\Windows\SysWOW64
+    // this will only compile using the x86 configuration since glut is 32 bit!
+    int argc = 1;
+    char* argv[1] = { (char*)"Something" };
+
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+    glutInitWindowSize(600, 600);
+    glutCreateWindow("GLUT");
+
+
+    glutDisplayFunc(display);
+    glutReshapeFunc(reshape);
+    glutIdleFunc(idle);
+
+    init();
+
+    glutMainLoop();
 
     return 0;
 }
