@@ -29,60 +29,11 @@ using namespace std;
 // It is passed from step to step. Each step is allowed to add or remove information from the context.
 kuka_generator::ProcessContext process_context;
 
-GLfloat light_diffuse[] = { 1.0, 0.0, 0.0, 1.0 };  /* Red diffuse light. */
-GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };  /* Infinite light location. */
-GLfloat n[6][3] = {  /* Normals for the 6 faces of a cube. */
-  {-1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {1.0, 0.0, 0.0},
-  {0.0, -1.0, 0.0}, {0.0, 0.0, 1.0}, {0.0, 0.0, -1.0} };
-GLint faces[6][4] = {  /* Vertex indices for the 6 faces of a cube. */
-  {0, 1, 2, 3}, {3, 2, 6, 7}, {7, 6, 5, 4},
-  {4, 5, 1, 0}, {5, 6, 2, 1}, {7, 4, 0, 3} };
-GLfloat v[8][3];  /* Will be filled in with X,Y,Z vertexes. */
-
 float rot = 0.0f;
 float resize_f = 1.0f;
 
-void drawBox(void)
-{
-    int i;
-
-    for (i = 0; i < 6; i++)
-    {
-        glBegin(GL_QUADS);
-        glNormal3fv(&n[i][0]);
-        glVertex3fv(&v[faces[i][0]][0]);
-        glVertex3fv(&v[faces[i][1]][0]);
-        glVertex3fv(&v[faces[i][2]][0]);
-        glVertex3fv(&v[faces[i][3]][0]);
-        glEnd();
-    }
-}
-
 void display()
 {
-    /*glClear(GL_COLOR_BUFFER_BIT);
-
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(-6, 6, -6, 6, -1, 1);
-
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-
-    glColor3ub(255, 255, 255);
-    glBegin(GL_LINE_STRIP);
-    glVertex2f(-4.00, 0.00);
-    glVertex2f(-3.00, 2.00);
-    glVertex2f(-2.00, 0.00);
-    glVertex2f(-1.00, 2.00);
-    glVertex2f(0.0, 0.00);
-    glVertex2f(1.00, 2.00);
-    glVertex2f(2.00, 0.00);
-    glVertex2f(3.00, 2.00);
-    glVertex2f(4.00, 0.00);
-    glEnd();
-
-    glutSwapBuffers();*/
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glLoadIdentity();
@@ -92,20 +43,6 @@ void display()
         0.0, 1.0, 0.0);      /* up is in positive Y direction */
 
     glRotatef(rot, 1.0, 1.0, 1.0);
-
-    //drawBox();
-
-    /*glBegin(GL_LINE_STRIP);
-    glVertex2f(-4.00, 0.00);
-    glVertex2f(-3.00, 2.00);
-    glVertex2f(-2.00, 0.00);
-    glVertex2f(-1.00, 2.00);
-    glVertex2f(0.0, 0.00);
-    glVertex2f(1.00, 2.00);
-    glVertex2f(2.00, 0.00);
-    glVertex2f(3.00, 2.00);
-    glVertex2f(4.00, 0.00);
-    glEnd();*/
 
     glBegin(GL_LINE_STRIP);
     for (auto& data_row : process_context.data_rows)
@@ -143,33 +80,8 @@ void idle()
     glutPostRedisplay();
 }
 
-void init(void)
-{
-    /* Setup cube vertex data. */
-    v[0][0] = v[1][0] = v[2][0] = v[3][0] = -1;
-    v[4][0] = v[5][0] = v[6][0] = v[7][0] = 1;
-    v[0][1] = v[1][1] = v[4][1] = v[5][1] = -1;
-    v[2][1] = v[3][1] = v[6][1] = v[7][1] = 1;
-    v[0][2] = v[3][2] = v[4][2] = v[7][2] = 1;
-    v[1][2] = v[2][2] = v[5][2] = v[6][2] = -1;
-
-    /* Enable a single OpenGL light. */
-    //glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
-    //glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-    //glEnable(GL_LIGHT0);
-    //glEnable(GL_LIGHTING);
-
-    /* Use depth buffering for hidden surface elimination. */
-    //glEnable(GL_DEPTH_TEST);
-
-    /* Adjust cube position to be asthetic angle. */
-    //glTranslatef(0.0, 0.0, -1.0);
-}
-
 int main()
 {
-
-
     //
     // Create all steps
     //
@@ -331,7 +243,6 @@ int main()
         data_row.position_filtered.z /= 50.0;
     }
 
-
     // copy glut32.dll to C:\Windows\SysWOW64
     // this will only compile using the x86 configuration since glut is 32 bit!
     int argc = 1;
@@ -342,12 +253,9 @@ int main()
     glutInitWindowSize(600, 600);
     glutCreateWindow("GLUT");
 
-
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
     glutIdleFunc(idle);
-
-    init();
 
     glutMainLoop();
 
