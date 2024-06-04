@@ -15,8 +15,6 @@ namespace KUKAGeneratorTest
             std::string expected = "Hello World!\n";
             std::string actual = "Hello World!\n";
 
-
-
             // Test
             Assert::AreEqual(expected, actual);
         }

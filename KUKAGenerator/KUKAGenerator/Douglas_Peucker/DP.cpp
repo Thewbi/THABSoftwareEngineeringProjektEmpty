@@ -4,7 +4,7 @@ namespace kuka_generator
 {
     CDP::CDP(void)
     {
-        std::cout << "Douglas Peucker algorithm started";
+        //std::cout << "Douglas Peucker algorithm started";
     }
 
     CDP::~CDP(void)

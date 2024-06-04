@@ -96,6 +96,9 @@ int main()
 
     // Step 1 - read user input
     //
+
+    std::cout << std::endl << "Step 1 - read user input" << std::endl;
+
     // this input file will be processed (TODO: step 1 has to produce this information!)
     //process_context.input_file = "resources\\path_01.csv";
     //process_context.input_file = "resources\\path_02.csv";
@@ -191,15 +194,19 @@ int main()
 
     // step 5
 
+    std::cout << std::endl << "Step 5 - Douglas Peucker algorithm started" << std::endl;
+
     // this is needed to have any usable data in the filtered position data.
     // Otherwise the filtered data is just 0 and the doublas peucker will not work correctly
     copy_filter_process_step.process();
 
     //constexpr double max_distance = 99999.0;
-    constexpr double max_distance = 25.0; // good compression
-    //constexpr double max_distance = 5.0;
+    //constexpr double max_distance = 25.0; // good compression for testset 1
+    //constexpr double max_distance = 5.0; // good compression for testset 2
     //constexpr double max_distance = 0.5;
     //constexpr double max_distance = 0.001;
+
+    double max_distance = process_context.douglas_peucker_max_distance;
 
     std::vector<kuka_generator::DataRow>::iterator lastItr = std::prev(process_context.data_rows.end());
     DP.DPRecursive(&process_context, process_context.data_rows.begin(), lastItr, max_distance);

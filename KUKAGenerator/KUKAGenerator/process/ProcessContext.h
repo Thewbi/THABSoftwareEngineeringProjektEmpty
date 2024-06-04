@@ -39,6 +39,9 @@ namespace kuka_generator
         // amount of elements to compute the position filter accross
         int length_filter_position{ 1 };
 
+        // distance for douglas peucker
+        double douglas_peucker_max_distance = 5.0;
+
         // all parts (Stützstellen) of the trajectory
         std::vector<DataRow> data_rows;
     };

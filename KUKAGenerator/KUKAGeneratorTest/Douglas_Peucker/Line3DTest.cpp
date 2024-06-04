@@ -10,6 +10,9 @@ namespace Line3DTest
 {
     constexpr double epsilon = 0.0001;
 
+    /// <summary>
+    /// https://learn.microsoft.com/de-de/visualstudio/test/microsoft-visualstudio-testtools-cppunittestframework-api-reference?view=vs-2022#general_is_True
+    /// </summary>
     TEST_CLASS(Line3DTest)
     {
     public:
