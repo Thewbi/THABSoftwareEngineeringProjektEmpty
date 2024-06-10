@@ -40,6 +40,12 @@ namespace kuka_generator
         int length_filter_position{ 1 };
 
         // distance for douglas peucker
+        //
+        //constexpr double max_distance = 99999.0;
+        //constexpr double max_distance = 25.0; // good compression for testset 1
+        //constexpr double max_distance = 5.0; // good compression for testset 2 and testset 3
+        //constexpr double max_distance = 0.5;
+        //constexpr double max_distance = 0.001;
         double douglas_peucker_max_distance = 5.0;
 
         // all parts (Stützstellen) of the trajectory

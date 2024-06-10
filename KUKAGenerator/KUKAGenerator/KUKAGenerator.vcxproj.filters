@@ -78,9 +78,6 @@
     <ClInclude Include="process\LoadInputFileProcessStep.h">
       <Filter>Header Files\process</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\THABSoftwareEngineeringProjekt\src\RobPathEditor\RobPathEditor\Douglas_Peucker\DP.h">
-      <Filter>Header Files\Douglas_Peucker</Filter>
-    </ClInclude>
     <ClInclude Include="process\ProcessContext.h">
       <Filter>Header Files\process</Filter>
     </ClInclude>
@@ -95,6 +92,9 @@
     </ClInclude>
     <ClInclude Include="process\CopyFilterProcessStep.h">
       <Filter>Header Files\process</Filter>
+    </ClInclude>
+    <ClInclude Include="Douglas_Peucker\DP.h">
+      <Filter>Header Files\Douglas_Peucker</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

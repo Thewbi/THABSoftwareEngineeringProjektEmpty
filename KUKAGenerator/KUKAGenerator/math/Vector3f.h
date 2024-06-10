@@ -29,6 +29,8 @@ namespace kuka_generator
         /// <param name="z">z coordinate</param>
         Vector3f(float x, float y, float z);
 
+        void set_values(float x, float y, float z);
+
         double distanceTo(Vector3f& point);
 
         float& operator[](unsigned int i)

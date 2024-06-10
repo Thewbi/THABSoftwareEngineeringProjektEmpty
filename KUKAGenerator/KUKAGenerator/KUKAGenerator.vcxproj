@@ -137,11 +137,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\THABSoftwareEngineeringProjekt\src\RobPathEditor\RobPathEditor\Douglas_Peucker\DP.h" />
     <ClInclude Include="Bitmap for testing\bitmap_image.h" />
     <ClInclude Include="Bitmap for testing\BmpHandler.h" />
     <ClInclude Include="data\DataRow.h" />
     <ClInclude Include="data\StringToDataRowConverter.h" />
+    <ClInclude Include="Douglas_Peucker\DP.h" />
     <ClInclude Include="Douglas_Peucker\Line3D.h" />
     <ClInclude Include="file_handling\IToLineFileReaderCallback.h" />
     <ClInclude Include="file_handling\ToLineFileReader.h" />

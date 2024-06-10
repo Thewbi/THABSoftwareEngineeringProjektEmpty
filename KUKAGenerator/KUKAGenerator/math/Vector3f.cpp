@@ -18,6 +18,13 @@ namespace kuka_generator
         this->z = z;
     }
 
+    void Vector3f::set_values(float x, float y, float z)
+    {
+        this->x = x;
+        this->y = y;
+        this->z = z;
+    }
+
     double Vector3f::distanceTo(Vector3f& point)
     {
         //calculating distance to another point using pythagoras

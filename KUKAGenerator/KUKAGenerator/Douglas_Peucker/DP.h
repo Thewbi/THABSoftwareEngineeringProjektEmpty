@@ -1,27 +1,24 @@
-// CPoint2D muss noch auf 3D abgeändert werden
-
 #pragma once
 
-#include <vector>
-#include <valarray>
-#include <list>
 #include <iostream>
+#include <Line3D.h>
+#include <list>
 #include <math.h>
-#include<ProcessContext.h>
-#include<Line3D.h>
-
+#include <ProcessContext.h>
+#include <valarray>
+#include <vector>
 
 namespace kuka_generator
 {
     class CDP
     {
-        private:
-            double maxDistance;
+    private:
+        double maxDistance;
 
-        public:
-            void DPRecursive(ProcessContext* ptr_PContext, std::vector<DataRow>::iterator startItr, std::vector<DataRow>::iterator endItr, double maxDistance);
-            CDP(void);
-            ~CDP(void);
+    public:
+        void DPRecursive(std::vector<kuka_generator::DataRow>& data_rows, std::vector<DataRow>::iterator startItr, std::vector<DataRow>::iterator endItr, double maxDistance);
+        CDP(void);
+        ~CDP(void);
 
     };
 }

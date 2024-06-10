@@ -161,6 +161,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Douglas_Peucker\DPTest.cpp" />
     <ClCompile Include="Douglas_Peucker\Line3DTest.cpp" />
     <ClCompile Include="KUKAGeneratorTest.cpp" />
     <ClCompile Include="pch.cpp">
