@@ -14,6 +14,25 @@ namespace kuka_generator
         float y{ 0.0f };
         float z{ 0.0f };
 
+        /// <summary>
+        /// Default constructor
+        ///
+        /// Initializes all values x, z and z to zero.
+        /// </summary>
+        Vector3f();
+
+        /// <summary>
+        /// Constructor with coordinates
+        /// </summary>
+        /// <param name="x">x coordinate</param>
+        /// <param name="y">y coordinate</param>
+        /// <param name="z">z coordinate</param>
+        Vector3f(float x, float y, float z);
+
+        void set_values(float x, float y, float z);
+
+        double distanceTo(Vector3f& point);
+
         float& operator[](unsigned int i)
         {
             if (i == 0)
@@ -28,6 +47,25 @@ namespace kuka_generator
             {
                 return z;
             }
+        }
+
+        // user-defined copy assignment
+        Vector3f& operator=(Vector3f other)
+        {
+            x = other.x;
+            y = other.y;
+            z = other.z;
+
+            return *this;
+        }
+
+        Vector3f& operator+= (const Vector3f& other)
+        {
+            x += other.x;
+            y += other.y;
+            z += other.z;
+
+            return *this;
         }
     };
 }

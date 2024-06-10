@@ -25,6 +25,8 @@ namespace kuka_generator
         kuka_generator::DataRow data_row;
         converter_.convert(line, data_row);
 
+        data_row.index = process_context_.data_rows.size();
+
         // store the data row
         process_context_.data_rows.push_back(data_row);
     }
