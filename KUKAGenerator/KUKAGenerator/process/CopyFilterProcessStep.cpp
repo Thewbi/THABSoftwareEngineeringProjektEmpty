@@ -12,7 +12,7 @@ namespace kuka_generator
         // empty
     }
 
-    void CopyFilterProcessStep::process()
+    int CopyFilterProcessStep::process()
     {
         std::cout << "[CopyFilterProcessStep] start processing!" << std::endl;
 
@@ -22,6 +22,8 @@ namespace kuka_generator
         }
 
         std::cout << "[CopyFilterProcessStep] done!" << std::endl;
+
+        return NO_ERROR;
     }
 
 }

@@ -12,7 +12,7 @@ namespace kuka_generator
         // empty
     }
 
-    void ExampleProcessStep::process()
+    int ExampleProcessStep::process()
     {
         std::cout << "[ExampleProcessStep] start processing!" << std::endl;
 
@@ -23,6 +23,8 @@ namespace kuka_generator
         process_context_.user_defined_velocity = 42069;
 
         std::cout << "[ExampleProcessStep] done!" << std::endl;
+
+        return NO_ERROR;
     }
 
 }

@@ -44,7 +44,7 @@ namespace kuka_generator
         /// <summary>
         /// Run this process
         /// </summary>
-        void process() override;
+        int process() override;
 
         /// <summary>
         /// This specific process step implements the IToLineFileReaderCallback interface

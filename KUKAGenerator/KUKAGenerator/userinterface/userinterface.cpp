@@ -19,7 +19,7 @@ namespace kuka_generator
         // empty
     }
 
-    void Userinterface::process()
+    int Userinterface::process()
     {
         // communicate with user
         std::cout << "******************************************************************************************************************************" << std::endl;
@@ -256,6 +256,8 @@ namespace kuka_generator
         std::cout << "[Userinterface] Die Eingabe der Filterlaenge war erfolgreich!" << std::endl << std::endl;
         std::cout << "[Userinterface] done!" << std::endl;
         std::cout << "******************************************************************************************************************************" << std::endl;
+
+        return NO_ERROR;
     };
 
     int Userinterface::checkinput(std::string& user_input)

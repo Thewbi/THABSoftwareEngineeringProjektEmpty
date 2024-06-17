@@ -3,13 +3,13 @@
 #include <iostream>
 #include <string>
 
+#include <filesystem>
 #include <IProcessStep.h>
 #include <IToLineFileReaderCallback.h>
 #include <ProcessContext.h>
+#include <stdlib.h>
 #include <StringToDataRowConverter.h>
 #include <ToLineFileReader.h>
-#include <stdlib.h>
-#include <filesystem>
 
 namespace kuka_generator
 {
@@ -26,7 +26,7 @@ namespace kuka_generator
         /// The process context to add data into. Used to indirectly interact with other steps.
         /// </summary>
         kuka_generator::ProcessContext& process_context_;
-        
+
         std::string user_input_file; // variable to store path to inputfile 
         std::string user_output_file; // variable to store path for outputfile
         std::string user_defined_oriantation_mode; // variable to store userselection for orientationmode
@@ -51,7 +51,7 @@ namespace kuka_generator
         /// <summary>
         /// Run this process
         /// </summary>
-        void process() override;
+        int process() override;
 
     };
 

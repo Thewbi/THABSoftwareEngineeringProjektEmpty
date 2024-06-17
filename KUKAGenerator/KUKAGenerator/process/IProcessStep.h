@@ -4,6 +4,8 @@
 
 namespace kuka_generator
 {
+    constexpr int NO_ERROR = 0;
+
     /// <summary>
     /// This is the "interface" that has to be implemented by each ProcessStep.
     /// This class cannot exist by itself meanung you cannot create a variable from it.
@@ -24,8 +26,10 @@ namespace kuka_generator
 
         /// <summary>
         /// Start/Run the process
+        /// 
+        /// return 0 if no errors occured, error code otherwise
         /// </summary>
-        virtual void process() = 0;
+        virtual int process() = 0;
 
     };
 }

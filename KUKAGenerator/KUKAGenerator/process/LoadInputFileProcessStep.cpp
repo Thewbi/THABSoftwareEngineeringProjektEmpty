@@ -7,16 +7,25 @@ namespace kuka_generator
         // empty
     }
 
-    void LoadInputFileProcessStep::process()
+    int LoadInputFileProcessStep::process()
     {
         std::cout << "[LoadInputFileProcessStep] Reading file '" << process_context_.input_file << "'" << std::endl;
 
         // the line reader takes care of the file handling
         // Every line will be sent to the process_line_callback function
         kuka_generator::ToLineFileReader to_line_file_reader(process_context_.input_file, *this);
-        to_line_file_reader.process();
+        int result = to_line_file_reader.process();
 
-        std::cout << "[LoadInputFileProcessStep] Reading file done!" << std::endl;
+        if (result == NO_ERROR)
+        {
+            std::cout << "[LoadInputFileProcessStep] [SUCCESS] Reading file done!" << std::endl;
+        }
+        else
+        {
+            std::cout << "[LoadInputFileProcessStep] [ERROR] Reading file failed!" << std::endl;
+        }
+
+        return result;
     }
 
     void LoadInputFileProcessStep::process_line_callback(std::string line)

@@ -215,7 +215,15 @@ int main()
     // step 2
     //
 
-    load_input_file_process_step.process();
+    int result_load_input_file = load_input_file_process_step.process();
+    if (result_load_input_file != kuka_generator::NO_ERROR)
+    {
+        std::cout << "[ERROR] Anwendung wird abgebrochen!" << std::endl;
+        std::cout << "[ERROR] Ursache ist, dass das Einlesen der Datendatei " << process_context.input_file << " nicht moeglich war!" << std::endl;
+
+        // return 2 to show that step 2 failed
+        return 2;
+    }
 
     // step 3
     //
