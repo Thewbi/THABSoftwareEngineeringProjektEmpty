@@ -14,6 +14,7 @@
 
 #include "DataRow.h"
 #include "DP.h"
+#include "userinterface.h"
 #include <CopyFilterProcessStep.h>
 #include <ExampleProcessStep.h>
 #include <IProcessStep.h>
