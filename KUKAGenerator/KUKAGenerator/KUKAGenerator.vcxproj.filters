@@ -49,6 +49,12 @@
     <Filter Include="Source Files\Bitmap for testing">
       <UniqueIdentifier>{0d132cbc-02d2-4d45-816e-6e12c43c7ca1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\userinterface">
+      <UniqueIdentifier>{89ec3a6d-3e9c-4ba6-8c83-e2f39a53943c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\userinterface">
+      <UniqueIdentifier>{8173d0ce-4a7e-4cd2-a54d-925d953d2430}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data\DataRow.h">
@@ -96,6 +102,9 @@
     <ClInclude Include="Douglas_Peucker\DP.h">
       <Filter>Header Files\Douglas_Peucker</Filter>
     </ClInclude>
+    <ClInclude Include="userinterface\userinterface.h">
+      <Filter>Header Files\userinterface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="process\ExampleProcessStep.cpp">
@@ -127,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="process\CopyFilterProcessStep.cpp">
       <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="userinterface\userinterface.cpp">
+      <Filter>Source Files\userinterface</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -158,8 +158,7 @@ int main()
 
     // Step 1 - read user input
     //
-
-    std::cout << std::endl << "Step 1 - read user input" << std::endl;
+    kuka_generator::Userinterface userinterface_process_step(process_context);
 
     // this input file will be processed (TODO: step 1 has to produce this information!)
     //process_context.input_file = "resources\\path_01.csv";
@@ -211,7 +210,7 @@ int main()
     // step 1
     //
 
-    // TODO
+    userinterface_process_step.process();
 
     // step 2
     //
