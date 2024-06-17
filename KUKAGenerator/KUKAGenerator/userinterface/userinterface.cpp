@@ -26,7 +26,7 @@ namespace kuka_generator
         std::cout << "[Userinterface] start processing!" << std::endl;
         std::cout << "[Userinterface] Willkommen!" << std::endl;
         std::cout << "[Userinterface] Dieses Programm wurde erstellt von: Name_1, Name_2, Name_3, Name_4, Name_5" << std::endl;
-        std::cout << "[Userinterface] Bitte den Dateipfad angegeben, unter welchen die einzulesenden Dateien abgelegt sind!" << std::endl;
+        std::cout << "[Userinterface] Bitte den Dateipfad [Datei!] angegeben, unter welchem die einzulesenden Daten abgelegt sind!" << std::endl;
 
         // get user input
         std::getline(std::cin, user_input_file);
@@ -48,7 +48,7 @@ namespace kuka_generator
         {
             std::cout << "[Userinterface] Der Eingabewert '" << user_input_file << "' ist kein gueltiger Dateipfad!" << std::endl;
             user_input_file.clear();
-            std::cout << "[Userinterface] Bitte den Dateipfad angegeben, unter welchen die einzulesenden Dateien abgelegt sind!" << std::endl;
+            std::cout << "[Userinterface] Bitte den Dateipfad [Datei!] angegeben, unter welchem die einzulesenden Daten abgelegt sind!" << std::endl;
             std::getline(std::cin, user_input_file);
         };
 
@@ -57,7 +57,7 @@ namespace kuka_generator
 
         // communicate with user
         std::cout << "[Userinterface] Die Eingabe des Inputpfads war erfolgreich!" << std::endl << std::endl;
-        std::cout << "[Userinterface] Bitte den Dateipfad angegeben, unter welchen die generierten Dateien abgelegt werden sollen!" << std::endl;
+        std::cout << "[Userinterface] Bitte den Dateipfad [Verzeichnis!] angegeben, unter welchem die generierte Datei abgelegt werden soll!" << std::endl;
 
         // get user input
         std::getline(std::cin, user_output_file);
@@ -79,7 +79,7 @@ namespace kuka_generator
         {
             std::cout << "[Userinterface] Der Eingabewert '" << user_output_file << "' ist kein gueltiger Dateipfad!" << std::endl;
             user_output_file.clear();
-            std::cout << "[Userinterface] Bitte den Dateipfad angegeben, unter welchen die einzulesenden Dateien abgelegt sind!" << std::endl;
+            std::cout << "[Userinterface] Bitte den Dateipfad [Verzeichnis!] angegeben, unter welchem die generierte Datei abgelegt werden soll!" << std::endl;
             std::getline(std::cin, user_output_file);
         };
 
