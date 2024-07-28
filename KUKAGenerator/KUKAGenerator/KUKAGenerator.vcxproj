@@ -153,6 +153,7 @@
     <ClInclude Include="process\LoadInputFileProcessStep.h" />
     <ClInclude Include="process\ProcessContext.h" />
     <ClInclude Include="userinterface\userinterface.h" />
+    <ClInclude Include="velocity\velocity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bitmap for testing\BmpHandler.cpp" />
@@ -168,6 +169,7 @@
     <ClCompile Include="process\ExampleProcessStep.cpp" />
     <ClCompile Include="process\LoadInputFileProcessStep.cpp" />
     <ClCompile Include="userinterface\userinterface.cpp" />
+    <ClCompile Include="velocity\velocity.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
