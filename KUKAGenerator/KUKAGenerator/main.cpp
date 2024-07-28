@@ -14,7 +14,7 @@
 
 #include "DataRow.h"
 #include "DP.h"
-#include "userinterface.h"
+#include "userinterface/userinterface.h"
 #include <CopyFilterProcessStep.h>
 #include <ExampleProcessStep.h>
 #include <IProcessStep.h>
@@ -87,8 +87,6 @@ void idle()
 
 void start_graphical_output()
 {
-
-
     // compute center of gravity of all points (3d average point)
     kuka_generator::Vector3f center;
     int count = 0;
