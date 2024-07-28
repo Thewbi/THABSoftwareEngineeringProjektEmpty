@@ -4,7 +4,7 @@
 
 namespace kuka_generator
 {
-    constexpr int NO_ERROR = 0;
+    constexpr int NO_ERROR_RESULT = 0;
 
     /// <summary>
     /// This is the "interface" that has to be implemented by each ProcessStep.

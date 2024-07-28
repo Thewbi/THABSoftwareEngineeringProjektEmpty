@@ -75,7 +75,7 @@
     <LibraryPath>$(SolutionDir)\glut-3.7.6-bin;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)\userinterface;$(ProjectDir)\math;$(ProjectDir)\data;$(ProjectDir)\process;$(ProjectDir)\file_handling;$(ProjectDir)\Douglas_Peucker;$(SolutionDir)\glut-3.7.6-bin;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\graphics;$(ProjectDir)\userinterface;$(ProjectDir)\math;$(ProjectDir)\data;$(ProjectDir)\process;$(ProjectDir)\file_handling;$(ProjectDir)\Douglas_Peucker;$(SolutionDir)\glut-3.7.6-bin;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\glut-3.7.6-bin;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -145,6 +145,7 @@
     <ClInclude Include="Douglas_Peucker\Line3D.h" />
     <ClInclude Include="file_handling\IToLineFileReaderCallback.h" />
     <ClInclude Include="file_handling\ToLineFileReader.h" />
+    <ClInclude Include="graphics\graphics.h" />
     <ClInclude Include="math\Matrix3x3f.h" />
     <ClInclude Include="math\Vector3f.h" />
     <ClInclude Include="process\CopyFilterProcessStep.h" />
@@ -160,6 +161,7 @@
     <ClCompile Include="Douglas_Peucker\DP.cpp" />
     <ClCompile Include="Douglas_Peucker\Line3D.cpp" />
     <ClCompile Include="file_handling\ToLineFileReader.cpp" />
+    <ClCompile Include="graphics\graphics.cpp" />
     <ClCompile Include="main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\process;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\math;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\file_handling;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\Douglas_Peucker;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\data;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>

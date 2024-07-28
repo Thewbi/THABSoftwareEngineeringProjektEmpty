@@ -1,15 +1,16 @@
 #pragma once
 
+#include <cctype>
 #include <iostream>
+#include <iostream>
+#include <sstream>
 #include <string>
 
-//#include <filesystem>
+#include <string>
+#include <windows.h>
+
 #include <IProcessStep.h>
-//#include <IToLineFileReaderCallback.h>
 #include <ProcessContext.h>
-//#include <stdlib.h>
-//#include <StringToDataRowConverter.h>
-//#include <ToLineFileReader.h>
 
 namespace kuka_generator
 {

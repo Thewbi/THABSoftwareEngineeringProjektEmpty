@@ -55,6 +55,12 @@
     <Filter Include="Source Files\userinterface">
       <UniqueIdentifier>{8173d0ce-4a7e-4cd2-a54d-925d953d2430}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{11b3bf3d-9d65-48a8-bd11-c162fb0ec5d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{badce627-228a-4870-8c3e-81f9bfd51288}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data\DataRow.h">
@@ -105,6 +111,9 @@
     <ClInclude Include="userinterface\userinterface.h">
       <Filter>Header Files\userinterface</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\graphics.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="process\ExampleProcessStep.cpp">
@@ -139,6 +148,9 @@
     </ClCompile>
     <ClCompile Include="userinterface\userinterface.cpp">
       <Filter>Source Files\userinterface</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics.cpp">
+      <Filter>Source Files\graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

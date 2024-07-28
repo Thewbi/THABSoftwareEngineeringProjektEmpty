@@ -24,7 +24,7 @@ namespace kuka_generator
 
         std::cout << "[ExampleProcessStep] done!" << std::endl;
 
-        return NO_ERROR;
+        return NO_ERROR_RESULT;
     }
 
 }

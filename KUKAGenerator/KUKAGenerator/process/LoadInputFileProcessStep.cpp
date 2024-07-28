@@ -16,7 +16,7 @@ namespace kuka_generator
         kuka_generator::ToLineFileReader to_line_file_reader(process_context_.input_file, *this);
         int result = to_line_file_reader.process();
 
-        if (result == NO_ERROR)
+        if (result == kuka_generator::NO_ERROR_RESULT)
         {
             std::cout << "[LoadInputFileProcessStep] [SUCCESS] Reading file done!" << std::endl;
         }

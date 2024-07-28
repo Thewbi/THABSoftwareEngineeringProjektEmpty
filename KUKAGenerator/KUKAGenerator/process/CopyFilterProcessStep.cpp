@@ -23,7 +23,7 @@ namespace kuka_generator
 
         std::cout << "[CopyFilterProcessStep] done!" << std::endl;
 
-        return NO_ERROR;
+        return NO_ERROR_RESULT;
     }
 
 }

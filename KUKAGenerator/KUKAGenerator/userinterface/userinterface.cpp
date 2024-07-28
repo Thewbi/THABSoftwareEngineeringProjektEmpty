@@ -1,11 +1,6 @@
 #include "Userinterface.h"
 
-#include <cctype>
-#include <iostream>
-#include <sstream>
-#include <stdlib.h>
-#include <string>
-#include <windows.h>
+
 
 namespace kuka_generator
 {
