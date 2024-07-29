@@ -114,6 +114,9 @@
     <ClInclude Include="graphics\graphics.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
+    <ClInclude Include="process\OutputToKUKASrcFileProcessStep.h">
+      <Filter>Header Files\process</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="process\ExampleProcessStep.cpp">
@@ -151,6 +154,9 @@
     </ClCompile>
     <ClCompile Include="graphics\graphics.cpp">
       <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="process\OutputToKUKASrcFileProcessStep.cpp">
+      <Filter>Source Files\process</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

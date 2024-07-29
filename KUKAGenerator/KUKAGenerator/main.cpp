@@ -22,14 +22,18 @@
 #include <LoadInputFileProcessStep.h>
 #include <ProcessContext.h>
 #include <userinterface.h>
+#include <OutputToKUKASrcFileProcessStep.h>
 
+
+#define USE_USER_INPUT
 
 
 using namespace std;
 
 // here, the process context variable is declared.
 // This is the variable that is used throughout the entire process.
-// It is passed from step to step. Each step is allowed to add or remove information from the context.
+// It is passed from step to step.
+// Each step is allowed to add or remove information to or from the process context.
 kuka_generator::ProcessContext process_context;
 
 
@@ -47,12 +51,9 @@ int main()
 
     // Step 1 - read user input
     //
+#ifdef USE_USER_INPUT
     kuka_generator::Userinterface userinterface_process_step(process_context);
-
-    // this input file will be processed (TODO: step 1 has to produce this information!)
-    //process_context.input_file = "resources\\path_01.csv";
-    //process_context.input_file = "resources\\path_02.csv";
-    process_context.input_file = "resources\\path_03.csv";
+#endif
 
     // Step 2 - load input file
     // 
@@ -87,21 +88,31 @@ int main()
     // Step 8 - Ausgabe in KUKA KRL (.src)
     //
 
+    kuka_generator::OutputToKUKASrcFileProcessStep output_to_KUKA_src_file_process_step(process_context);
+
     //
     // Execute all steps
     //
 
-    // step 0
+    // step 0 - example
     //
 
-    //example_process_step.process();
+//    example_process_step.process();
 
-    // step 1
+    // step 1 - user input
     //
-
+#ifdef USE_USER_INPUT
     userinterface_process_step.process();
+#else
+    // this input file will be processed (TODO: step 1 has to produce this information!)
+    //process_context.input_file = "resources\\path_01.csv";
+    //process_context.input_file = "resources\\path_02.csv";
+    process_context.input_file = "resources\\path_03.csv";
 
-    // step 2
+    process_context.output_file = "output\\path_03.src";
+#endif
+
+    // step 2 - load file into the process context
     //
 
     int result_load_input_file = load_input_file_process_step.process();
@@ -114,12 +125,12 @@ int main()
         return 2;
     }
 
-    // step 3
+    // step 3 - filter position
     //
 
     // TODO
 
-    // step 4
+    // step 4 - filter orientation
     //
 
     // TODO
@@ -130,7 +141,7 @@ int main()
     // Otherwise the filtered data is just 0 and the doublas peucker will not work correctly
     copy_filter_process_step.process();
 
-    // step 5
+    // step 5 - Douglas Peucker (Remove Points)
     //
 
     std::cout << std::endl << "Step 5 - Douglas Peucker algorithm started" << std::endl;
@@ -147,20 +158,20 @@ int main()
 
     std::cout << "Total: " << total_count << " after Douglas-Peucker: " << not_deleted_count << std::endl;
 
-    // step 6
+    // step 6 - Matrix to Euler Angles
     //
 
     // TODO
 
-    // step 7
+    // step 7 - compute speed
     //
 
     // TODO
 
-    // step 8
+    // step 8 - output to KUKA .src file
     //
 
-    // TODO
+    output_to_KUKA_src_file_process_step.process();
 
     //
     // DEBUG - graphical output
