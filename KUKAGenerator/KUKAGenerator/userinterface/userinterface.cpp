@@ -16,11 +16,15 @@ namespace kuka_generator
 
     int Userinterface::process()
     {
+        // declaring variables
+        int i = 0;
+        int j = 0;
+
         // communicate with user
         std::cout << "******************************************************************************************************************************" << std::endl;
         std::cout << "[Userinterface] start processing!" << std::endl;
         std::cout << "[Userinterface] Willkommen!" << std::endl;
-        std::cout << "[Userinterface] Dieses Programm wurde erstellt von: Name_1, Name_2, Name_3, Name_4, Name_5" << std::endl;
+        std::cout << "[Userinterface] Dieses Programm wurde erstellt von: Janek Berlin, Thong Phi, Wolfgang Bischoff, Marcel Dudek, Tom Bischof" << std::endl;
         std::cout << "[Userinterface] Bitte den Dateipfad [Datei!] angegeben, unter welchem die einzulesenden Daten abgelegt sind!" << std::endl;
 
         // get user input
@@ -92,7 +96,7 @@ namespace kuka_generator
         while (user_defined_oriantation_mode != "y" and user_defined_oriantation_mode != "Y" and user_defined_oriantation_mode != "n" and user_defined_oriantation_mode != "N")
         {
             // system("cls"); // clear consol?
-            std::cout << "[Userinterface] Der Eingabewert '" << user_defined_oriantation_mode << "'entspricht keiner der gegebenen Moeglichkeiten!" << std::endl;
+            std::cout << "[Userinterface] Der Eingabewert '" << user_defined_oriantation_mode << "' entspricht keiner der gegebenen Moeglichkeiten!" << std::endl;
             user_defined_oriantation_mode.clear();
             std::cout << "[Userinterface] Soll die voreingestellte Orientierung uebernommen werden, oder die Orientierung selbst definiert werden?" << std::endl;
             std::cout << "[Userinterface] y = Orientierung uebernehmen!" << std::endl;
@@ -109,49 +113,46 @@ namespace kuka_generator
         else if (user_defined_oriantation_mode == "n" or user_defined_oriantation_mode == "N")
         {
             std::cout << "[Userinterface] Danke fuer die N Auswahl" << std::endl;
-            std::cout << "[Userinterface] Welche Orientierung soll benutzt werden?" << std::endl;
-            std::getline(std::cin, user_defined_orientation);
+            std::cout << "[Userinterface] Die Eingabe der Orientierung erfordert das definieren einer neunwertigen Matrix!" << std::endl;
+            std::cout << "[Userinterface] Die Werte muessen einzeln, nacheinander eingegeben werden!" << std::endl;
+            std::cout << "[Userinterface] Jeder Wert ist durch seine Zeilenummer / Spaltennummer addressiert!" << std::endl;
+            std::cout << "[Userinterface] Nachfolgend der schematische Aufbau der Matrix:" << std::endl;
+            std::cout << "[Userinterface] Maxtix(3x3):" << std::endl << std::endl;
+            std::cout << "[Userinterface] \t\t Spalte \t Spalte \t Spalte" << std::endl << std::endl;
+            std::cout << "[Userinterface] Zeile \t\t    [ ]   \t   [ ]  \t   [ ]  " << std::endl;
+            std::cout << "[Userinterface] Zeile \t\t    [ ]   \t   [ ]  \t   [ ]  " << std::endl;
+            std::cout << "[Userinterface] Zeile \t\t    [ ]   \t   [ ]  \t   [ ]  " << std::endl;
 
-            // check if userinput is empty
-            while (checkinput(user_defined_orientation) == 0)
+
+            for (i = 1; i <= 3; i++) // loop through rows
             {
-                std::cout << "[Userinterface] Es wurde nichts eingegeben!" << std::endl;
-                std::cout << "[Userinterface] Bitte die Eingabe wiederholen!" << std::endl;
-                std::getline(std::cin, user_defined_orientation);
+                for (j = 1; j <= 3; j++) // loop through columns
+                {
+                    std::cout << "[Userinterface] Bitte den Wert fuer Position [" << i << "," << j << "] angeben!" << std::endl;
+                    std::getline(std::cin, user_defined_orientation);
+
+                        // check if userinput is empty
+                        while (checkinput(user_defined_orientation) == 0)
+                        {
+                            std::cout << "[Userinterface] Es wurde nichts eingegeben!" << std::endl;
+                            std::cout << "[Userinterface] Bitte die Eingabe wiederholen!" << std::endl;
+                            std::getline(std::cin, user_defined_orientation);
+                        };
+
+                    // check if userinput is int or double
+                    while (checkdouble(user_defined_orientation) == 0)
+                    {
+                        std::cout << "[Userinterface] Es wurde keine Zahl eingegeben!" << std::endl;
+                        std::cout << "[Userinterface] Bitte die Eingabe wiederholen!" << std::endl;
+                        std::getline(std::cin, user_defined_orientation);
+                    };
+
+                    process_context_.user_defined_orientation[i * j] = std::stod(user_defined_orientation);
+                    user_defined_orientation = ""; // reset variable
+                };
             };
 
-            // check if userinput is int or double
-            while (checkdouble(user_defined_orientation) == 0)
-            {
-                std::cout << "[Userinterface] Es wurde keine Zahl eingegeben!" << std::endl;
-                std::cout << "[Userinterface] Bitte die Eingabe wiederholen!" << std::endl;
-                std::getline(std::cin, user_defined_orientation);
-            };
             process_context_.use_user_defined_orientation = { true }; // set variable
-
-            // Matrix muss mit 9 Zahlen gefüllt werden --> 9 Eingabewerte
-
-            /// <summary>
-            /// Matrix3x3f A(1, 2, 0, 2, 5, -1, 4, 10, -1);
-            /// yields the matrix
-            ///    1     2     0
-            ///    2     5    -1
-            ///    4    10    -1
-            /// </summary>
-            /// <param name="m0">first row, element 0</param>
-            /// <param name="m1">first row, element 1</param>
-            /// <param name="m2">first row, element 2</param>
-            /// <param name="m3">second row, element 0</param>
-            /// <param name="m4">second row, element 1</param>
-            /// <param name="m5">second row, element 2</param>
-            /// <param name="m6">third row, element 0</param>
-            /// <param name="m7">third row, element 1</param>
-            /// <param name="m8">third row, element 2</param>
-
-            process_context_.user_defined_orientation[0] = 0.1;
-
-
-            // process_context_.user_defined_orientation = std::stod(user_defined_orientation); // needs to be set
         };
 
         // communicate with user
