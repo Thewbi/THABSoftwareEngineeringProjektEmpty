@@ -2,7 +2,7 @@
 
 namespace kuka_generator
 {
-    void getvelocity(std::vector<kuka_generator::DataRow>& data_rows, std::vector<DataRow>::iterator startItr, std::vector<DataRow>::iterator endItr)
+    void Cvelo::getvelocity(std::vector<kuka_generator::DataRow>& data_rows, std::vector<DataRow>::iterator startItr, std::vector<DataRow>::iterator endItr)
     {
         // if there is noc distance between starting point and end point -> return
         if (distance(startItr, endItr) == 0)
@@ -18,7 +18,7 @@ namespace kuka_generator
         do
         {
             // finding the first point wich is alive and has no velocity
-            for (itr = startItr; itr == endItr); itr++)
+            for (itr = startItr; itr == endItr; itr++)
             {
                 if ((itr->alive == false) || (itr->velocity != 0.0))
                 {
@@ -26,10 +26,10 @@ namespace kuka_generator
                 }
 
                 firstpoint = itr;
-                pStart.x = Itr->position_filtered.x;
-                pStart.y = Itr->position_filtered.y;
-                pStart.z = Itr->position_filtered.z;
-                starttime = Itr->timestamp;
+                pStart.x = itr->position_filtered.x;
+                pStart.y = itr->position_filtered.y;
+                pStart.z = itr->position_filtered.z;
+                starttime = itr->timestamp;
 
                 break;
             }
@@ -37,7 +37,7 @@ namespace kuka_generator
             itr++;
 
             //finding the nex point wich is alive
-            for (itr; (itr->alive == true) || itr == endItr); itr++)
+            for (itr; (itr->alive == true) || itr == endItr; itr++)
             {
                 if (itr->alive == false)
                 {
@@ -54,7 +54,7 @@ namespace kuka_generator
             double disty = pEnd.y - pStart.y;
             double distz = pEnd.z - pStart.z;
 
-            double distlength = sprt((distx * distx) + (disty * disty) + (distz + distz));
+            double distlength = sqrt((distx * distx) + (disty * disty) + (distz + distz));
             double calcvelo = distlength / ((itr->timestamp) - starttime);
 
             firstpoint->velocity = calcvelo;
@@ -65,5 +65,5 @@ namespace kuka_generator
 
 
 
-    
+
 }
