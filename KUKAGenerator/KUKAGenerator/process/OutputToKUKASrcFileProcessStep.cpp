@@ -48,7 +48,8 @@ namespace kuka_generator
                 continue;
             }
 
-            if (velocity != data_row.velocity)
+            //if (velocity != data_row.velocity)
+            if (!float_compare(velocity, data_row.velocity))
             {
                 velocity = data_row.velocity;
 

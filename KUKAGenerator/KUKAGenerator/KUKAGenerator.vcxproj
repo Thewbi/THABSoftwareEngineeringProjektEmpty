@@ -75,7 +75,7 @@
     <LibraryPath>$(SolutionDir)\glut-3.7.6-bin;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)\graphics;$(ProjectDir)\userinterface;$(ProjectDir)\math;$(ProjectDir)\data;$(ProjectDir)\process;$(ProjectDir)\file_handling;$(ProjectDir)\Douglas_Peucker;$(SolutionDir)\glut-3.7.6-bin;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\velocity;$(ProjectDir)\graphics;$(ProjectDir)\userinterface;$(ProjectDir)\math;$(ProjectDir)\data;$(ProjectDir)\process;$(ProjectDir)\file_handling;$(ProjectDir)\Douglas_Peucker;$(SolutionDir)\glut-3.7.6-bin;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\glut-3.7.6-bin;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -147,6 +147,7 @@
     <ClInclude Include="file_handling\IToLineFileReaderCallback.h" />
     <ClInclude Include="file_handling\ToLineFileReader.h" />
     <ClInclude Include="graphics\graphics.h" />
+    <ClInclude Include="math\float_math.h" />
     <ClInclude Include="math\Matrix3x3f.h" />
     <ClInclude Include="math\Vector3f.h" />
     <ClInclude Include="process\CopyFilterProcessStep.h" />
@@ -156,6 +157,7 @@
     <ClInclude Include="process\OutputToKUKASrcFileProcessStep.h" />
     <ClInclude Include="process\ProcessContext.h" />
     <ClInclude Include="userinterface\userinterface.h" />
+    <ClInclude Include="velocity\velocity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bitmap for testing\BmpHandler.cpp" />
@@ -167,12 +169,14 @@
     <ClCompile Include="main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\process;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\math;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\file_handling;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\Douglas_Peucker;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\data;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="math\float_math.cpp" />
     <ClCompile Include="math\Vector3f.cpp" />
     <ClCompile Include="process\CopyFilterProcessStep.cpp" />
     <ClCompile Include="process\ExampleProcessStep.cpp" />
     <ClCompile Include="process\LoadInputFileProcessStep.cpp" />
     <ClCompile Include="process\OutputToKUKASrcFileProcessStep.cpp" />
     <ClCompile Include="userinterface\userinterface.cpp" />
+    <ClCompile Include="velocity\velocity.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

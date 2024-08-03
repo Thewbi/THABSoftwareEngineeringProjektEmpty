@@ -5,6 +5,7 @@
 #include <filesystem>
 
 #include <IProcessStep.h>
+#include <float_math.h>
 
 namespace fs = std::filesystem;
 

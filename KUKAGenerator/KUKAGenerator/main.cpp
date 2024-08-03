@@ -10,11 +10,10 @@
 #include <iterator>
 #include <limits>
 #include <string>
-
 #include <stdlib.h>
 
-#include "DataRow.h"
-#include "DP.h"
+#include <DataRow.h>
+#include <DP.h>
 #include <CopyFilterProcessStep.h>
 #include <ExampleProcessStep.h>
 #include <graphics.h>
@@ -23,9 +22,10 @@
 #include <ProcessContext.h>
 #include <userinterface.h>
 #include <OutputToKUKASrcFileProcessStep.h>
+#include <velocity.h>
 
 
-#define USE_USER_INPUT
+//#define USE_USER_INPUT
 
 
 using namespace std;
@@ -84,6 +84,8 @@ int main()
 
     // Step 7 - Berechnung der Geschwindigkeit
     //
+
+    kuka_generator::Cvelo c_velo;
 
     // Step 8 - Ausgabe in KUKA KRL (.src)
     //
@@ -166,7 +168,8 @@ int main()
     // step 7 - compute speed
     //
 
-    // TODO
+    lastItr = std::prev(process_context.data_rows.end());
+    c_velo.getvelocity(process_context.data_rows, process_context.data_rows.begin(), lastItr);
 
     // step 8 - output to KUKA .src file
     //

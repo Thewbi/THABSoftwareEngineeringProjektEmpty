@@ -61,6 +61,12 @@
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{badce627-228a-4870-8c3e-81f9bfd51288}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\velocity">
+      <UniqueIdentifier>{3bb7ddc2-2337-4cd6-aef7-a864e5665d49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\velocity">
+      <UniqueIdentifier>{0818a7ba-2430-4477-8cdf-146a16260ec9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data\DataRow.h">
@@ -117,6 +123,12 @@
     <ClInclude Include="process\OutputToKUKASrcFileProcessStep.h">
       <Filter>Header Files\process</Filter>
     </ClInclude>
+    <ClInclude Include="velocity\velocity.h">
+      <Filter>Header Files\velocity</Filter>
+    </ClInclude>
+    <ClInclude Include="math\float_math.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="process\ExampleProcessStep.cpp">
@@ -157,6 +169,12 @@
     </ClCompile>
     <ClCompile Include="process\OutputToKUKASrcFileProcessStep.cpp">
       <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="velocity\velocity.cpp">
+      <Filter>Source Files\velocity</Filter>
+    </ClCompile>
+    <ClCompile Include="math\float_math.cpp">
+      <Filter>Source Files\math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
