@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Douglas_Peucker">
       <UniqueIdentifier>{de7c3080-a849-4115-934a-1023efce83da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\file_handling">
+      <UniqueIdentifier>{5d9116ba-d209-4551-a9fb-c2bd25a432c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\file_handling">
+      <UniqueIdentifier>{2216cbfa-4a5a-4bb8-9ab1-0e34b9758432}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KUKAGeneratorTest.cpp">
@@ -33,10 +39,19 @@
     <ClCompile Include="Douglas_Peucker\DPTest.cpp">
       <Filter>Source Files\Douglas_Peucker</Filter>
     </ClCompile>
+    <ClCompile Include="file_handling\ToLineFileReaderTest.cpp">
+      <Filter>Source Files\file_handling</Filter>
+    </ClCompile>
+    <ClCompile Include="file_handling\TestToLineFileReaderCallback.cpp">
+      <Filter>Source Files\file_handling</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="file_handling\TestToLineFileReaderCallback.h">
+      <Filter>Header Files\file_handling</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
