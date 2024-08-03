@@ -48,14 +48,7 @@ namespace kuka_generator
                 continue;
             }
 
-            //if (velocity != data_row.velocity)
-            if (!float_compare(velocity, data_row.velocity))
-            {
-                velocity = data_row.velocity;
 
-                // output velocity
-                ofstream << "$VEL.CP=" << velocity << "\n";
-            }
 
             float pos_x = data_row.position_filtered.x;
             float pos_y = data_row.position_filtered.y;
@@ -66,6 +59,15 @@ namespace kuka_generator
             float euler_c = data_row.euler_angles.z;
 
             ofstream << "LIN {X " << pos_x << ", Y " << pos_y << ", Z " << pos_z << ", A " << euler_a << "" << ", B " << euler_b << ", C " << euler_c << "} \n";
+
+            //if (velocity != data_row.velocity)
+            if (!float_compare(velocity, data_row.velocity))
+            {
+                velocity = data_row.velocity;
+
+                // output velocity
+                ofstream << "$VEL.CP=" << velocity << "\n";
+            }
         }
 
         ofstream.flush();

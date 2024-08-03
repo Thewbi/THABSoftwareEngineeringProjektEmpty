@@ -2,6 +2,7 @@
 
 namespace kuka_generator
 {
+
     Cvelo::Cvelo()
     {
 
@@ -62,20 +63,26 @@ namespace kuka_generator
                 break;
             }
 
+            if (itr == endItr)
+            {
+                pEnd.x = itr->position_filtered.x;
+                pEnd.y = itr->position_filtered.y;
+                pEnd.z = itr->position_filtered.z;
+            }
+
             double distx = pEnd.x - pStart.x;
             double disty = pEnd.y - pStart.y;
             double distz = pEnd.z - pStart.z;
 
-            double distlength = sqrt((distx * distx) + (disty * disty) + (distz + distz));
+            double sum_of_squares = (distx * distx) + (disty * disty) + (distz + distz);
+            double distlength = sqrt(abs(sum_of_squares));
+
             double calcvelo = distlength / ((itr->timestamp) - starttime);
 
             firstpoint->velocity = calcvelo;
 
         } while (itr != endItr);
+
     }
-
-
-
-
 
 }
