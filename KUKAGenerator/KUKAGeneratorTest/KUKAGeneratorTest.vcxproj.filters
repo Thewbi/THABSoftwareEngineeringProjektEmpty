@@ -25,6 +25,9 @@
     <Filter Include="Source Files\file_handling">
       <UniqueIdentifier>{2216cbfa-4a5a-4bb8-9ab1-0e34b9758432}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\data">
+      <UniqueIdentifier>{d86eb867-34dc-4b23-9a32-2f66bd6a8acc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KUKAGeneratorTest.cpp">
@@ -44,6 +47,9 @@
     </ClCompile>
     <ClCompile Include="file_handling\TestToLineFileReaderCallback.cpp">
       <Filter>Source Files\file_handling</Filter>
+    </ClCompile>
+    <ClCompile Include="data\StringToDataRowConverterTest.cpp">
+      <Filter>Source Files\data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

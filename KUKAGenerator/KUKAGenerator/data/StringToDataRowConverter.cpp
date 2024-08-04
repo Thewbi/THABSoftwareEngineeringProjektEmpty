@@ -4,6 +4,11 @@
 
 namespace kuka_generator
 {
+    bool isBlank(std::string data)
+    {
+        return !std::any_of(data.begin(), data.end(), [](unsigned char c) { return !std::isspace(c); });
+    }
+
     void StringToDataRowConverter::convert(std::string line, DataRow& data_row)
     {
         // Format:
@@ -11,6 +16,11 @@ namespace kuka_generator
 
         // Example:
         // 28387.427734 1033.365021 -554.171979 632.421231 -0.088749 -0.980695 0.174243 -0.978993 0.118123 0.166192 -0.183566 -0.155834 -0.970577
+
+        if (isBlank(line))
+        {
+            return;
+        }
 
         std::istringstream istringstream(line);
 

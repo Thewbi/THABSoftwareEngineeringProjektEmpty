@@ -13,7 +13,7 @@ namespace kuka_generator
 
     public:
 
-        int index;
+        int index{ -1 };
 
         // timestamp, read from the input file
         long timestamp{ 0 };

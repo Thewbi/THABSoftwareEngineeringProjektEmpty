@@ -1,8 +1,10 @@
 #pragma once
 
-#include <DataRow.h>
+#include <algorithm>
 #include <sstream>
 #include <string>
+
+#include <DataRow.h>
 
 namespace kuka_generator
 {

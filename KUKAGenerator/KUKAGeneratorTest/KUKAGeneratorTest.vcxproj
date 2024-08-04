@@ -161,6 +161,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="data\StringToDataRowConverterTest.cpp" />
     <ClCompile Include="Douglas_Peucker\DPTest.cpp" />
     <ClCompile Include="Douglas_Peucker\Line3DTest.cpp" />
     <ClCompile Include="file_handling\TestToLineFileReaderCallback.cpp" />
