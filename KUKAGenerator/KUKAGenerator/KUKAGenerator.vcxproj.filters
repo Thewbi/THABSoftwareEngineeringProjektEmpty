@@ -129,6 +129,12 @@
     <ClInclude Include="math\float_math.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
+    <ClInclude Include="file_handling\IOutputToFileCallback.h">
+      <Filter>Header Files\file_handling</Filter>
+    </ClInclude>
+    <ClInclude Include="file_handling\OutputToFileCallback.h">
+      <Filter>Header Files\file_handling</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="process\ExampleProcessStep.cpp">
@@ -175,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="math\float_math.cpp">
       <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="file_handling\OutputToFileCallback.cpp">
+      <Filter>Source Files\file_handling</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

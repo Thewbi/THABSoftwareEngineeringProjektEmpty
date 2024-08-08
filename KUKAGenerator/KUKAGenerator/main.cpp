@@ -22,6 +22,7 @@
 #include <ProcessContext.h>
 #include <userinterface.h>
 #include <OutputToKUKASrcFileProcessStep.h>
+#include <OutputToFileCallback.h>
 #include <velocity.h>
 
 
@@ -90,7 +91,9 @@ int main()
     // Step 8 - Ausgabe in KUKA KRL (.src)
     //
 
-    kuka_generator::OutputToKUKASrcFileProcessStep output_to_KUKA_src_file_process_step(process_context);
+    kuka_generator::OutputToFileCallback output_to_file_callback;
+    kuka_generator::OutputToKUKASrcFileProcessStep output_to_KUKA_src_file_process_step(
+        process_context, output_to_file_callback);
 
     //
     // Execute all steps

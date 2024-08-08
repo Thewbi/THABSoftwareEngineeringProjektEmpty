@@ -144,7 +144,9 @@
     <ClInclude Include="data\StringToDataRowConverter.h" />
     <ClInclude Include="Douglas_Peucker\DP.h" />
     <ClInclude Include="Douglas_Peucker\Line3D.h" />
+    <ClInclude Include="file_handling\IOutputToFileCallback.h" />
     <ClInclude Include="file_handling\IToLineFileReaderCallback.h" />
+    <ClInclude Include="file_handling\OutputToFileCallback.h" />
     <ClInclude Include="file_handling\ToLineFileReader.h" />
     <ClInclude Include="graphics\graphics.h" />
     <ClInclude Include="math\float_math.h" />
@@ -164,6 +166,7 @@
     <ClCompile Include="data\StringToDataRowConverter.cpp" />
     <ClCompile Include="Douglas_Peucker\DP.cpp" />
     <ClCompile Include="Douglas_Peucker\Line3D.cpp" />
+    <ClCompile Include="file_handling\OutputToFileCallback.cpp" />
     <ClCompile Include="file_handling\ToLineFileReader.cpp" />
     <ClCompile Include="graphics\graphics.cpp" />
     <ClCompile Include="main.cpp">

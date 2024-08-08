@@ -1,13 +1,11 @@
 #pragma once
 
 #include <iostream>
-#include <fstream>
-#include <filesystem>
+#include <sstream>
 
 #include <IProcessStep.h>
+#include <IOutputToFileCallback.h>
 #include <float_math.h>
-
-namespace fs = std::filesystem;
 
 namespace kuka_generator
 {
@@ -25,13 +23,26 @@ namespace kuka_generator
         /// </summary>
         kuka_generator::ProcessContext& process_context_;
 
+        /// <summary>
+        /// The callback for file handling.
+        /// </summary>
+        IOutputToFileCallback& output_to_file_callback_;
+
+        /// <summary>
+        /// Output the velocity to the file
+        /// </summary>
+        /// <param name="velocity">the velocity to output</param>
+        void output_velocity(const float velocity);
+
     public:
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="process_context">The process context</param>
-        OutputToKUKASrcFileProcessStep(kuka_generator::ProcessContext& process_context);
+        /// <param name="output_to_file_callback">The output_to_file_callback</param>
+        OutputToKUKASrcFileProcessStep(kuka_generator::ProcessContext& process_context,
+            IOutputToFileCallback& output_to_file_callback);
 
         /// <summary>
         /// Run this process step

@@ -2,9 +2,21 @@
 
 namespace kuka_generator
 {
-    OutputToKUKASrcFileProcessStep::OutputToKUKASrcFileProcessStep(kuka_generator::ProcessContext& process_context) : process_context_(process_context)
+    OutputToKUKASrcFileProcessStep::OutputToKUKASrcFileProcessStep(
+        ProcessContext& process_context,
+        IOutputToFileCallback& output_to_file_callback)
+        : process_context_(process_context), output_to_file_callback_(output_to_file_callback)
     {
         // empty
+    }
+
+    void OutputToKUKASrcFileProcessStep::output_velocity(const float velocity)
+    {
+        std::stringstream sstream;
+        sstream.precision(6);
+        sstream << std::fixed;
+        sstream << "$VEL.CP=" << velocity << "\n";
+        output_to_file_callback_.output_line(sstream.str());
     }
 
     int OutputToKUKASrcFileProcessStep::process()
@@ -14,32 +26,39 @@ namespace kuka_generator
         // if there is not data to output, abort this step
         if (process_context_.data_rows.size() == 0)
         {
-            std::cout << "[OutputToKUKASrcFileProcessStep] No data in process context to write!" << std::endl;
+            std::cout << "[OutputToKUKASrcFileProcessStep] No data in process context to write! Aborting!" << std::endl;
             return result;
         }
 
-        // https://stackoverflow.com/questions/62256738/visual-studio-2019-c-and-stdfilesystem
-        //
-        // Create the path that the user has selected via the user interface
-        const fs::path path = process_context_.output_file;
-        const fs::path parent_path = path.parent_path();
-        create_directories(parent_path);
+        if (process_context_.output_file.empty())
+        {
+            std::cout << "[OutputToKUKASrcFileProcessStep] No output file specified! Aborting!" << std::endl;
+            return result;
+        }
+
+        output_to_file_callback_.create_folders(process_context_.output_file);
 
         std::cout << "[OutputToKUKASrcFileProcessStep] Writing file '" << process_context_.output_file << "'" << std::endl;
 
-        std::ofstream ofstream(path);
-        ofstream.precision(6);
-        ofstream << std::fixed;
+        output_to_file_callback_.open_file(process_context_.output_file);
 
-        // output DEF 09_robCode
-        ofstream << "DEF 09_robCode\n";
+        // output DEF <SCRIPT_NAME>
+        std::stringstream script_name_sstream;
+        script_name_sstream << "DEF " << process_context_.output_file << "\n";
+        output_to_file_callback_.output_line(script_name_sstream.str());
 
         // PTP $POS_ACT
-        ofstream << "PTP $POS_ACT\n";
+        output_to_file_callback_.output_line("PTP $POS_ACT\n");
 
         // output velocity
         float velocity = process_context_.data_rows.at(0).velocity;
-        ofstream << "$VEL.CP=" << velocity << "\n";
+
+        /*std::stringstream sstream;
+        sstream.precision(6);
+        sstream << std::fixed;
+        sstream << "$VEL.CP=" << velocity << "\n";
+        output_to_file_callback_.output_line(sstream.str());*/
+        output_velocity(velocity);
 
         for (auto& data_row : process_context_.data_rows)
         {
@@ -48,30 +67,51 @@ namespace kuka_generator
                 continue;
             }
 
+            // do not output the velocity if it is already set or if it is zero
+            if (!float_compare(velocity, data_row.velocity) && !float_compare(0.0, data_row.velocity))
+            {
+                // output velocity
+                /*std::stringstream sstream;
+                sstream.precision(6);
+                sstream << std::fixed;
+                sstream << "$VEL.CP=" << data_row.velocity << "\n";
+                output_to_file_callback_.output_line(sstream.str());*/
+                output_velocity(data_row.velocity);
 
+                // remember this velocity for the next iteration
+                velocity = data_row.velocity;
+            }
 
             float pos_x = data_row.position_filtered.x;
             float pos_y = data_row.position_filtered.y;
             float pos_z = data_row.position_filtered.z;
 
-            float euler_a = data_row.euler_angles.x;
-            float euler_b = data_row.euler_angles.y;
-            float euler_c = data_row.euler_angles.z;
+            // sensical default values so that the FIREBRAND simulator works
+            float euler_a = 0.0;
+            float euler_b = 180.0;
+            float euler_c = 0.0;
 
-            ofstream << "LIN {X " << pos_x << ", Y " << pos_y << ", Z " << pos_z << ", A " << euler_a << "" << ", B " << euler_b << ", C " << euler_c << "} \n";
-
-            //if (velocity != data_row.velocity)
-            if (!float_compare(velocity, data_row.velocity))
+            // override default values if there are computed values to override the defaults with
+            if (data_row.euler_angles.x != 0.0f || data_row.euler_angles.y != 0.0 || data_row.euler_angles.z != 0.0)
             {
-                velocity = data_row.velocity;
-
-                // output velocity
-                ofstream << "$VEL.CP=" << velocity << "\n";
+                euler_a = data_row.euler_angles.x;
+                euler_b = data_row.euler_angles.y;
+                euler_c = data_row.euler_angles.z;
             }
+
+            std::stringstream sstream;
+            sstream.precision(6);
+            sstream << std::fixed;
+            sstream << "LIN {X " << pos_x << ", Y " << pos_y << ", Z " << pos_z << ", A " << euler_a << "" << ", B " << euler_b << ", C " << euler_c << "} \n";
+            output_to_file_callback_.output_line(sstream.str());
         }
 
-        ofstream.flush();
-        ofstream.close();
+        //output_to_file_callback_.output_line("$VEL.CP=0.000000\n");
+        output_velocity(0.0);
+
+        output_to_file_callback_.output_line("END");
+
+        output_to_file_callback_.close_file();
 
         std::cout << "[OutputToKUKASrcFileProcessStep] [SUCCESS] Writing file done!" << std::endl;
 
