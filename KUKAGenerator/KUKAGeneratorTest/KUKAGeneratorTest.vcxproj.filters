@@ -28,6 +28,9 @@
     <Filter Include="Source Files\data">
       <UniqueIdentifier>{d86eb867-34dc-4b23-9a32-2f66bd6a8acc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\process">
+      <UniqueIdentifier>{56e2ba1e-4845-4c95-8d3e-e84d79fffd9b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KUKAGeneratorTest.cpp">
@@ -51,12 +54,21 @@
     <ClCompile Include="data\StringToDataRowConverterTest.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
+    <ClCompile Include="process\OutputToKUKASrcFileProcessStepTest.cpp">
+      <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="file_handling\TestOutputToFileCallback.cpp">
+      <Filter>Source Files\file_handling</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="file_handling\TestToLineFileReaderCallback.h">
+      <Filter>Header Files\file_handling</Filter>
+    </ClInclude>
+    <ClInclude Include="file_handling\TestOutputToFileCallback.h">
       <Filter>Header Files\file_handling</Filter>
     </ClInclude>
   </ItemGroup>

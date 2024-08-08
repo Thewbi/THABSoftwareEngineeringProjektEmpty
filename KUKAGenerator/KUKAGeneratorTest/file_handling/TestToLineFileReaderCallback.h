@@ -12,6 +12,6 @@ namespace kuka_generator
     public:
         std::vector<std::string> data;
 
-        void TestToLineFileReaderCallback::process_line_callback(std::string line);
+        void process_line_callback(std::string line);
     };
 }

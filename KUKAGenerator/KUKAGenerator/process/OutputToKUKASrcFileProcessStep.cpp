@@ -27,13 +27,13 @@ namespace kuka_generator
         if (process_context_.data_rows.size() == 0)
         {
             std::cout << "[OutputToKUKASrcFileProcessStep] No data in process context to write! Aborting!" << std::endl;
-            return result;
+            return -1;
         }
 
         if (process_context_.output_file.empty())
         {
             std::cout << "[OutputToKUKASrcFileProcessStep] No output file specified! Aborting!" << std::endl;
-            return result;
+            return -2;
         }
 
         output_to_file_callback_.create_folders(process_context_.output_file);
@@ -52,12 +52,6 @@ namespace kuka_generator
 
         // output velocity
         float velocity = process_context_.data_rows.at(0).velocity;
-
-        /*std::stringstream sstream;
-        sstream.precision(6);
-        sstream << std::fixed;
-        sstream << "$VEL.CP=" << velocity << "\n";
-        output_to_file_callback_.output_line(sstream.str());*/
         output_velocity(velocity);
 
         for (auto& data_row : process_context_.data_rows)
@@ -71,11 +65,6 @@ namespace kuka_generator
             if (!float_compare(velocity, data_row.velocity) && !float_compare(0.0, data_row.velocity))
             {
                 // output velocity
-                /*std::stringstream sstream;
-                sstream.precision(6);
-                sstream << std::fixed;
-                sstream << "$VEL.CP=" << data_row.velocity << "\n";
-                output_to_file_callback_.output_line(sstream.str());*/
                 output_velocity(data_row.velocity);
 
                 // remember this velocity for the next iteration
@@ -106,7 +95,6 @@ namespace kuka_generator
             output_to_file_callback_.output_line(sstream.str());
         }
 
-        //output_to_file_callback_.output_line("$VEL.CP=0.000000\n");
         output_velocity(0.0);
 
         output_to_file_callback_.output_line("END");
