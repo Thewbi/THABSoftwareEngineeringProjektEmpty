@@ -111,6 +111,8 @@ int main()
     process_context.input_file = "resources\\path_03.csv";
 
     // default output file for testing
+    //process_context.output_file = "output\\path_01.src";
+    //process_context.output_file = "output\\path_02.src";
     process_context.output_file = "output\\path_03.src";
 #endif
 
@@ -125,7 +127,7 @@ int main()
 
         // return 2 to show that step 2 failed
         return 2;
-}
+    }
 
     // step 3 - filter position
     //
