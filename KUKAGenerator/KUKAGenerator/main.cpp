@@ -25,8 +25,13 @@
 #include <OutputToFileCallback.h>
 #include <velocity.h>
 
-
-//#define USE_USER_INPUT
+// when the following define is present (line is not removed/commented) then
+// the user interface interaction via the command line is executed.
+//
+// if the next line is removed / commented, then default input and output files
+// are defined for testing/debugging purposes. (check all occurences of USE_USER_INPUT
+// in this file to see where the defaults are defined)
+#define USE_USER_INPUT
 
 
 using namespace std;
@@ -42,13 +47,9 @@ kuka_generator::ProcessContext process_context;
 int main()
 {
     //
-    // Create all steps
+    // Create all steps - this is where all instances are created so that they
+    // can be used to run the application later
     //
-
-    //// Step 0 - example step
-    ////
-    //// this step does nothing really
-    //kuka_generator::ExampleProcessStep example_process_step(process_context);
 
     // Step 1 - read user input
     //
@@ -96,13 +97,8 @@ int main()
         process_context, output_to_file_callback);
 
     //
-    // Execute all steps
+    // Execute all steps - this is the start of the execution of the process steps
     //
-
-    // step 0 - example
-    //
-
-//    example_process_step.process();
 
     // step 1 - user input
     //
@@ -114,6 +110,7 @@ int main()
     //process_context.input_file = "resources\\path_02.csv";
     process_context.input_file = "resources\\path_03.csv";
 
+    // default output file for testing
     process_context.output_file = "output\\path_03.src";
 #endif
 
@@ -128,7 +125,7 @@ int main()
 
         // return 2 to show that step 2 failed
         return 2;
-    }
+}
 
     // step 3 - filter position
     //
@@ -180,13 +177,16 @@ int main()
     output_to_KUKA_src_file_process_step.process();
 
     //
-    // DEBUG - graphical output
+    // DEBUG - graphical output - this is an optional output for testing
     //
 
+    // copy data to make the available in another file
     for (auto& data_row : process_context.data_rows)
     {
         data_rows_for_graphics.push_back(data_row);
     }
+
+    // start the optional graphical output for debugging
     start_graphical_output();
 
     return 0;
