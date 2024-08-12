@@ -71,17 +71,17 @@ namespace kuka_generator
                 velocity = data_row.velocity;
             }
 
-            float pos_x = data_row.position_filtered.x;
-            float pos_y = data_row.position_filtered.y;
-            float pos_z = data_row.position_filtered.z;
+            double pos_x = data_row.position_filtered.x;
+            double pos_y = data_row.position_filtered.y;
+            double pos_z = data_row.position_filtered.z;
 
             // sensical default values so that the FIREBRAND simulator works
-            float euler_a = 0.0;
-            float euler_b = 180.0;
-            float euler_c = 0.0;
+            double euler_a = 0.0;
+            double euler_b = 180.0;
+            double euler_c = 0.0;
 
             // override default values if there are computed values to override the defaults with
-            if (data_row.euler_angles.x != 0.0f || data_row.euler_angles.y != 0.0 || data_row.euler_angles.z != 0.0)
+            if (data_row.euler_angles.x != 0.0 || data_row.euler_angles.y != 0.0 || data_row.euler_angles.z != 0.0)
             {
                 euler_a = data_row.euler_angles.x;
                 euler_b = data_row.euler_angles.y;

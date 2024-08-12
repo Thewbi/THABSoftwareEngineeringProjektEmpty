@@ -24,7 +24,7 @@ namespace kuka_generator
         bool use_user_defined_orientation{ false };
 
         // this is the user defined orientation (this field contains no valid data if the orientation is read from the input file)
-        Matrix3x3f user_defined_orientation;
+        Matrix3x3d user_defined_orientation;
 
         // true = the user has supplied a velocity to use for all parts of the trajectory (the velocity from the input file is ignored)
         // false = the velocities should be read from the input file

@@ -150,7 +150,9 @@
     <ClInclude Include="file_handling\ToLineFileReader.h" />
     <ClInclude Include="graphics\graphics.h" />
     <ClInclude Include="math\float_math.h" />
+    <ClInclude Include="math\Matrix3x3d.h" />
     <ClInclude Include="math\Matrix3x3f.h" />
+    <ClInclude Include="math\Vector3d.h" />
     <ClInclude Include="math\Vector3f.h" />
     <ClInclude Include="process\CopyFilterProcessStep.h" />
     <ClInclude Include="process\ExampleProcessStep.h" />
@@ -173,6 +175,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\process;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\math;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\file_handling;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\Douglas_Peucker;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\data;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="math\float_math.cpp" />
+    <ClCompile Include="math\Vector3d.cpp" />
     <ClCompile Include="math\Vector3f.cpp" />
     <ClCompile Include="process\CopyFilterProcessStep.cpp" />
     <ClCompile Include="process\ExampleProcessStep.cpp" />

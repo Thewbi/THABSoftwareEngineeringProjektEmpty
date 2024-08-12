@@ -5,6 +5,7 @@
 
 #include <Matrix3x3f.h>
 #include <Vector3f.h>
+#include <Vector3d.h>
 
 namespace kuka_generator
 {
@@ -19,18 +20,20 @@ namespace kuka_generator
         long timestamp{ 0 };
 
         // stores the unfiltered position (defined by either the user or read from the input file)
-        Vector3f position;
+        Vector3d position;
 
         // keep the original data intact e.g. for applying filters to the original data.
         // Therefore filtered data is copied into this member variable.
-        Vector3f position_filtered;
+        Vector3d position_filtered;
 
         // stores the unfiltered orientation (defined by either the user or read from the input file)
-        Matrix3x3f orientation;
+        //Matrix3x3f orientation;
+        Matrix3x3d orientation;
 
         // keep the original data intact e.g. for applying filters to the original data.
         // Therefore filtered data is copied into this member variable.
-        Matrix3x3f orientation_filtered;
+        //Matrix3x3f orientation_filtered;
+        Matrix3x3d orientation_filtered;
 
         // velocity at that point (either defined by the user or computed dynamically given the timestamp and the distance)
         double velocity{ 0.0 };
@@ -40,6 +43,6 @@ namespace kuka_generator
         bool alive{ true };
 
         // resulting euler angles as mandated by the KAKA IRL output format
-        Vector3f euler_angles;
+        Vector3d euler_angles;
     };
 }

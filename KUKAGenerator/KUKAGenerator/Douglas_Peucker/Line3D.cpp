@@ -6,7 +6,7 @@ namespace kuka_generator
     {
     }
 
-    CLine3D::CLine3D(Vector3f& P1, Vector3f& P2)
+    CLine3D::CLine3D(Vector3d& P1, Vector3d& P2)
     {
         p1 = P1;
         p2 = P2;
@@ -16,7 +16,7 @@ namespace kuka_generator
     {
     }
 
-    double CLine3D::distanceTo(Vector3f& p)
+    double CLine3D::distanceTo(Vector3d& p)
     {
         // see: https://de.serlo.org/mathe/2137/abstand-eines-punktes-zu-einer-geraden-berechnen-analytische-geometrie
 
@@ -24,9 +24,9 @@ namespace kuka_generator
         double bx, by, bz, rv_sq, dist;
 
         // setting the vector for the line
-        float rvx = p1.x - p2.x;
-        float rvy = p1.y - p2.y;
-        float rvz = p1.z - p2.z;
+        double rvx = p1.x - p2.x;
+        double rvy = p1.y - p2.y;
+        double rvz = p1.z - p2.z;
 
         // calculating the denomintaor of the equasion
         rv_sq = sqrt(((double)rvx * (double)rvx) + ((double)rvy * (double)rvy) + ((double)rvz * (double)rvz));
@@ -37,9 +37,9 @@ namespace kuka_generator
         bz = p.z - (double)p1.z;
 
         // calculation the cross product
-        float cpx = by * rvz - bz * rvy;
-        float cpy = bz * rvx - bx * rvz;
-        float cpz = bx * rvy - by * rvx;
+        double cpx = by * rvz - bz * rvy;
+        double cpy = bz * rvx - bx * rvz;
+        double cpz = bx * rvy - by * rvx;
 
         // calculating the distance 
         dist = sqrt(cpx * cpx + cpy * cpy + cpz * cpz) / rv_sq;

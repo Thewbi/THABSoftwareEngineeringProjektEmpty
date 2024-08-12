@@ -32,20 +32,20 @@ namespace kuka_generator
         // x
         std::string float_as_string;
         istringstream >> float_as_string;
-        data_row.position.x = stof(float_as_string);
+        data_row.position.x = stod(float_as_string);
 
         // y
         istringstream >> float_as_string;
-        data_row.position.y = stof(float_as_string);
+        data_row.position.y = stod(float_as_string);
 
         // z
         istringstream >> float_as_string;
-        data_row.position.z = stof(float_as_string);
+        data_row.position.z = stod(float_as_string);
 
         for (int i = 0; i < 9; i++)
         {
             istringstream >> float_as_string;
-            data_row.orientation[i] = stof(float_as_string);
+            data_row.orientation[i] = stod(float_as_string);
         }
     }
 }

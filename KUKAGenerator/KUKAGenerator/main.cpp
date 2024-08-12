@@ -2,8 +2,10 @@
 #include <iostream>
 #include <valarray>
 
-#include <algorithm>
+#define _USE_MATH_DEFINES
 #include <cmath>
+
+#include <algorithm>
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
@@ -31,7 +33,7 @@
 // if the next line is removed / commented, then default input and output files
 // are defined for testing/debugging purposes. (check all occurences of USE_USER_INPUT
 // in this file to see where the defaults are defined)
-#define USE_USER_INPUT
+//#define USE_USER_INPUT
 
 
 using namespace std;
@@ -42,7 +44,12 @@ using namespace std;
 // Each step is allowed to add or remove information to or from the process context.
 kuka_generator::ProcessContext process_context;
 
-
+double to_positive_angle(double angle)
+{
+    angle = fmod(angle, 360);
+    if (angle < 0) angle += 360;
+    return angle;
+}
 
 int main()
 {
@@ -133,6 +140,7 @@ int main()
     //
 
     // TODO
+    std::cout << "todo" << std::endl;
 
     // step 4 - filter orientation
     //
@@ -142,7 +150,7 @@ int main()
     // TODO: replace this implementation by a real implementation
     // 
     // this is needed to have any usable data in the filtered position data.
-    // Otherwise the filtered data is just 0 and the doublas peucker will not work correctly
+    // Otherwise the filtered data is just 0 and the DouglasPeucker will not work correctly
     copy_filter_process_step.process();
 
     // step 5 - Douglas Peucker (Remove Points)
@@ -164,8 +172,60 @@ int main()
 
     // step 6 - Matrix to Euler Angles
     //
+    /**/
+    int i = 0;
+    for (kuka_generator::DataRow& data_row : process_context.data_rows)
+    {
+        data_row.euler_angles.x = 0.0;
+        data_row.euler_angles.y = 0.0;
+        data_row.euler_angles.z = 0.0;
 
-    // TODO
+        /*data_row.euler_angles.x = 0.0;
+        data_row.euler_angles.y = 180.0;
+        data_row.euler_angles.z = 0.0;*/
+
+        //if (i < 0)
+        if (i < 100000)
+        {
+            if (data_row.orientation[6] == -1.0f)
+            {
+                throw 1;
+            }
+            else if (data_row.orientation[6] == 1.0f)
+            {
+                throw 2;
+            }
+            else
+            {
+                // R11 R12 R13
+                // R21 R22 R23
+                // R31 R32 R33
+
+                // [0] [1] [2]
+                // [3] [4] [5]
+                // [6] [7] [8]
+
+                // B = −asin R31
+                data_row.euler_angles.y = -1.0 * asin(data_row.orientation[6]);
+                data_row.euler_angles.y = data_row.euler_angles.y * 180.0f / M_PI;
+                data_row.euler_angles.y = to_positive_angle(data_row.euler_angles.y);
+
+                // A = atan2 R21, R11
+                data_row.euler_angles.x = 1.0 * atan2(data_row.orientation[3], data_row.orientation[0]);
+                data_row.euler_angles.x = data_row.euler_angles.x * 180.0f / M_PI;
+                data_row.euler_angles.x = to_positive_angle(data_row.euler_angles.x);
+
+                // C = atan2 R32, R33
+                data_row.euler_angles.z = 1.0 * atan2(data_row.orientation[7], data_row.orientation[8]);
+                data_row.euler_angles.z = data_row.euler_angles.z * 180.0f / M_PI;
+                data_row.euler_angles.z = to_positive_angle(data_row.euler_angles.z);
+
+                std::cout << "" << std::endl;
+            }
+        }
+
+        i++;
+    }
 
     // step 7 - compute speed
     //
@@ -182,7 +242,7 @@ int main()
     // DEBUG - graphical output - this is an optional output for testing
     //
 
-    // copy data to make the available in another file
+    // copy data to make the data available in another module of the application
     for (auto& data_row : process_context.data_rows)
     {
         data_rows_for_graphics.push_back(data_row);

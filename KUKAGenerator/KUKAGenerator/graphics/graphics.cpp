@@ -59,7 +59,7 @@ void idle()
 void start_graphical_output()
 {
     // compute center of gravity of all points (3d average point)
-    kuka_generator::Vector3f center;
+    kuka_generator::Vector3d center;
     int count = 0;
     for (auto& data_row : data_rows_for_graphics)
     {

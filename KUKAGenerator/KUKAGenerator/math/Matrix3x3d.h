@@ -2,7 +2,7 @@
 
 namespace kuka_generator
 {
-    constexpr unsigned int MATRIX_3X3D_ELEMENT_COUNT = 9;
+    constexpr unsigned int MATRIX_3X3F_ELEMENT_COUNT = 9;
 
     /// <summary>
     /// https://de.mathworks.com/help/matlab/math/basic-matrix-operations.html
@@ -16,14 +16,14 @@ namespace kuka_generator
     ///    4    10    -1
     ///
     /// Same as with this class:
-    /// Matrix3x3d A(1, 2, 0, 2, 5, -1, 4, 10, -1);
+    /// Matrix3x3f A(1, 2, 0, 2, 5, -1, 4, 10, -1);
     /// </summary>
-    class Matrix3x3d
+    class Matrix3x3f
     {
 
     public:
 
-        double data[MATRIX_3X3D_ELEMENT_COUNT]{ 0.0 };
+        float data[MATRIX_3X3F_ELEMENT_COUNT]{ 0.0 };
 
         /// <summary>
         /// The default constructor. This constructor creates the identity matrix
@@ -31,7 +31,7 @@ namespace kuka_generator
         /// 0 1 0
         /// 0 0 1
         /// </summary>
-        Matrix3x3d()
+        Matrix3x3f()
         {
             data[0] = data[4] = data[8] = 1.0f;
         }
@@ -52,7 +52,7 @@ namespace kuka_generator
         /// <param name="m6">third row, element 0</param>
         /// <param name="m7">third row, element 1</param>
         /// <param name="m8">third row, element 2</param>
-        Matrix3x3d(double m0, double m1, double m2, double m3, double m4, double m5, double m6, double m7, double m8)
+        Matrix3x3f(float m0, float m1, float m2, float m3, float m4, float m5, float m6, float m7, float m8)
         {
             data[0] = m0;
             data[1] = m1;
@@ -75,9 +75,9 @@ namespace kuka_generator
         /// </summary>
         /// <param name="rhs">The matrix that is assigned to this class.</param>
         /// <returns></returns>
-        Matrix3x3d& operator=(const Matrix3x3d& rhs)
+        Matrix3x3f& operator=(const Matrix3x3f& rhs)
         {
-            for (int i = 0; i < MATRIX_3X3D_ELEMENT_COUNT; i++)
+            for (int i = 0; i < MATRIX_3X3F_ELEMENT_COUNT; i++)
             {
                 data[i] = rhs.data[i];
             }
@@ -89,9 +89,9 @@ namespace kuka_generator
         /// </summary>
         /// <param name="i">picks the location of data where the matrix's data[] is accessed</param>
         /// <returns></returns>
-        double& operator[](unsigned int i)
+        float& operator[](unsigned int i)
         {
-            if (i < MATRIX_3X3D_ELEMENT_COUNT)
+            if (i < MATRIX_3X3F_ELEMENT_COUNT)
             {
                 return data[i];
             }

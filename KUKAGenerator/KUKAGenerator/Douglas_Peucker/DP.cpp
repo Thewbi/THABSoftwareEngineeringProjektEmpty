@@ -54,12 +54,12 @@ namespace kuka_generator
         }
 
         // copying the first and the last point into two new variables
-        Vector3f pStart;
+        Vector3d pStart;
         pStart.x = startItr->position_filtered.x;
         pStart.y = startItr->position_filtered.y;
         pStart.z = startItr->position_filtered.z;
 
-        Vector3f pEnd;
+        Vector3d pEnd;
         pEnd.x = endItr->position_filtered.x;
         pEnd.y = endItr->position_filtered.y;
         pEnd.z = endItr->position_filtered.z;
