@@ -156,6 +156,7 @@
     <ClInclude Include="math\Vector3f.h" />
     <ClInclude Include="process\CopyFilterProcessStep.h" />
     <ClInclude Include="process\ExampleProcessStep.h" />
+    <ClInclude Include="process\FilterOrientationProcessStep.h" />
     <ClInclude Include="process\IProcessStep.h" />
     <ClInclude Include="process\LoadInputFileProcessStep.h" />
     <ClInclude Include="process\OutputToKUKASrcFileProcessStep.h" />
@@ -179,6 +180,7 @@
     <ClCompile Include="math\Vector3f.cpp" />
     <ClCompile Include="process\CopyFilterProcessStep.cpp" />
     <ClCompile Include="process\ExampleProcessStep.cpp" />
+    <ClCompile Include="process\FilterOrientationProcessStep.cpp" />
     <ClCompile Include="process\LoadInputFileProcessStep.cpp" />
     <ClCompile Include="process\OutputToKUKASrcFileProcessStep.cpp" />
     <ClCompile Include="userinterface\userinterface.cpp" />

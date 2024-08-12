@@ -33,4 +33,28 @@ namespace kuka_generator
         return s;
     }
 
+    void Vector3d::normalize()
+    {
+        double mod = 0.0;
+
+        mod += x * x;
+        mod += y * y;
+        mod += z * z;
+
+        double mag = std::sqrt(mod);
+
+        x /= mag;
+        y /= mag;
+        z /= mag;
+    }
+
+    Vector3d Vector3d::cross_product(const Vector3d& rhs)
+    {
+        return Vector3d(
+            y * rhs.z - z * rhs.y,
+            z * rhs.x - x * rhs.z,
+            x * rhs.y - y * rhs.x
+        );
+    }
+
 }

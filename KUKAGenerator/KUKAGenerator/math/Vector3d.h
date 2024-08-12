@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cmath>
+
 namespace kuka_generator
 {
     /// <summary>
@@ -32,6 +34,10 @@ namespace kuka_generator
         void set_values(double x, double y, double z);
 
         double distanceTo(Vector3d& point);
+
+        void normalize();
+
+        Vector3d cross_product(const Vector3d& rhs);
 
         double& operator[](unsigned int i)
         {
