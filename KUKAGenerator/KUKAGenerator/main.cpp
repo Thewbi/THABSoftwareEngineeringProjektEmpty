@@ -17,10 +17,10 @@
 #include <DataRow.h>
 #include <DP.h>
 #include <CopyFilterProcessStep.h>
-#include <ExampleProcessStep.h>
 #include <graphics.h>
 #include <IProcessStep.h>
 #include <LoadInputFileProcessStep.h>
+#include <FilterPositionProcessStep.h>
 #include <FilterOrientationProcessStep.h>
 #include <ProcessContext.h>
 #include <userinterface.h>
@@ -76,8 +76,7 @@ int main()
     // Step 3 - instantiate "Apply Filter (Position)" process step
     //
 
-    // TODO: replace this implementation by a real implementation
-    kuka_generator::CopyFilterProcessStep copy_filter_process_step(process_context);
+    kuka_generator::FilterPositionProcessStep filter_position_process_step(process_context);
 
     //
     // Step 4 - instantiate Apply Filter (Orientation) process step
@@ -135,7 +134,7 @@ int main()
     //process_context.output_file = "output\\path_02.src";
     process_context.output_file = "output\\path_03.src";
 
-    process_context.length_filter_orientation = 3;
+    process_context.length_filter_orientation = 5;
 #endif
 
     //
@@ -156,14 +155,7 @@ int main()
     // step 3 - filter position
     //
 
-    // TODO
-    std::cout << "todo" << std::endl;
-
-    // TODO: replace this implementation by a real implementation
-    // 
-    // this is needed to have any usable data in the filtered position data.
-    // Otherwise the filtered data is just 0 and the DouglasPeucker will not work correctly
-    copy_filter_process_step.process();
+    filter_position_process_step.process();
 
     //
     // step 4 - filter orientation
@@ -198,10 +190,6 @@ int main()
         data_row.euler_angles.x = 0.0;
         data_row.euler_angles.y = 0.0;
         data_row.euler_angles.z = 0.0;
-
-        /*data_row.euler_angles.x = 0.0;
-        data_row.euler_angles.y = 180.0;
-        data_row.euler_angles.z = 0.0;*/
 
         if (data_row.orientation_filtered[6] == -1.0f)
         {

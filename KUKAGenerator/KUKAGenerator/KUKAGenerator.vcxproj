@@ -157,6 +157,7 @@
     <ClInclude Include="process\CopyFilterProcessStep.h" />
     <ClInclude Include="process\ExampleProcessStep.h" />
     <ClInclude Include="process\FilterOrientationProcessStep.h" />
+    <ClInclude Include="process\FilterPositionProcessStep.h" />
     <ClInclude Include="process\IProcessStep.h" />
     <ClInclude Include="process\LoadInputFileProcessStep.h" />
     <ClInclude Include="process\OutputToKUKASrcFileProcessStep.h" />
@@ -181,6 +182,7 @@
     <ClCompile Include="process\CopyFilterProcessStep.cpp" />
     <ClCompile Include="process\ExampleProcessStep.cpp" />
     <ClCompile Include="process\FilterOrientationProcessStep.cpp" />
+    <ClCompile Include="process\FilterPositionProcessStep.cpp" />
     <ClCompile Include="process\LoadInputFileProcessStep.cpp" />
     <ClCompile Include="process\OutputToKUKASrcFileProcessStep.cpp" />
     <ClCompile Include="userinterface\userinterface.cpp" />

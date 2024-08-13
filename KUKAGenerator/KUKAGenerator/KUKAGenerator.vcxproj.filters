@@ -144,6 +144,9 @@
     <ClInclude Include="process\FilterOrientationProcessStep.h">
       <Filter>Header Files\process</Filter>
     </ClInclude>
+    <ClInclude Include="process\FilterPositionProcessStep.h">
+      <Filter>Header Files\process</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="process\ExampleProcessStep.cpp">
@@ -198,6 +201,9 @@
       <Filter>Source Files\math</Filter>
     </ClCompile>
     <ClCompile Include="process\FilterOrientationProcessStep.cpp">
+      <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\FilterPositionProcessStep.cpp">
       <Filter>Source Files\process</Filter>
     </ClCompile>
   </ItemGroup>
