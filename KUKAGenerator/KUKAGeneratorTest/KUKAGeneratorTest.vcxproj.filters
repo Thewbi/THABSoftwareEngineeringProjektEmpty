@@ -60,6 +60,12 @@
     <ClCompile Include="file_handling\TestOutputToFileCallback.cpp">
       <Filter>Source Files\file_handling</Filter>
     </ClCompile>
+    <ClCompile Include="process\FilterPositionProcessStepTest.cpp">
+      <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\FilterOrientationProcessStepTest.cpp">
+      <Filter>Source Files\process</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

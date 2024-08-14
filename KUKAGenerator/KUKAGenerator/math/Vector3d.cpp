@@ -43,9 +43,12 @@ namespace kuka_generator
 
         double mag = std::sqrt(mod);
 
-        x /= mag;
-        y /= mag;
-        z /= mag;
+        if (mag != 0)
+        {
+            x /= mag;
+            y /= mag;
+            z /= mag;
+        }
     }
 
     Vector3d Vector3d::cross_product(const Vector3d& rhs)
