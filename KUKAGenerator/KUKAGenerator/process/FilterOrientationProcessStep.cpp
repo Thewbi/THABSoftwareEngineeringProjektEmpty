@@ -8,7 +8,17 @@ kuka_generator::FilterOrientationProcessStep::FilterOrientationProcessStep(kuka_
 
 int kuka_generator::FilterOrientationProcessStep::process()
 {
-    if (process_context_.length_filter_orientation <= 1)
+    if (process_context_.use_user_defined_orientation)
+    {
+        // if the user wants to use their own rotation, put the user defined
+        // orientation into all orientations
+        for (DataRow& data_row : process_context_.data_rows)
+        {
+            // copy the user defined orientation over
+            data_row.orientation_filtered = process_context_.user_defined_orientation;
+        }
+    }
+    else if (process_context_.length_filter_orientation <= 1)
     {
         // if the filter length is at most a single data_row, no filtering takes places
         for (DataRow& data_row : process_context_.data_rows)

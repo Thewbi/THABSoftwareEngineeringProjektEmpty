@@ -10,7 +10,13 @@ namespace kuka_generator
 {
 
     /// <summary>
-    /// This is an example. It can be used as a template for process steps.
+    /// This step performs filtering over posistion data of the each position
+    /// information and it's n predecessors. The average position is constructed.
+    /// Average position means x, y and z coordinates are summed up respectively
+    /// and the three results are ach divided by n. The three averaged components
+    /// form the filtered position.
+    ///
+    /// The parameter n is taken from the user interface. 
     /// </summary>
     class FilterPositionProcessStep : public IProcessStep
     {

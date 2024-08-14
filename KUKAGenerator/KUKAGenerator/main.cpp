@@ -34,7 +34,7 @@
 // if the next line is removed / commented, then default input and output files
 // are defined for testing/debugging purposes. (check all occurences of USE_USER_INPUT
 // in this file to see where the defaults are defined)
-//#define USE_USER_INPUT
+#define USE_USER_INPUT
 
 using namespace std;
 
