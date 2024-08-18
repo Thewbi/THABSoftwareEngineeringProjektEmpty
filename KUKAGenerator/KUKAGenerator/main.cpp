@@ -230,8 +230,27 @@ int main()
     // step 7 - compute speed
     //
 
-    lastItr = std::prev(process_context.data_rows.end());
-    c_velo.getvelocity(process_context.data_rows, process_context.data_rows.begin(), lastItr);
+    // use the user-defined velocity or compute the actual velocity out of the input
+    if (process_context.use_user_defined_velocity)
+    {
+        // with a velocity of 0.0 the robot arm will not move, so set it to a default value
+        double vel = process_context.user_defined_velocity;
+        if (float_compare(0.0, process_context.user_defined_velocity))
+        {
+            vel = 0.5;
+        }
+        // use the user-defined velocity for all rows
+        for (auto& data_row : process_context.data_rows)
+        {
+            data_row.velocity = vel;
+        }
+    }
+    else
+    {
+        // compute velocity from timestamp and locations stored in the data
+        lastItr = std::prev(process_context.data_rows.end());
+        c_velo.getvelocity(process_context.data_rows, process_context.data_rows.begin(), lastItr);
+    }
 
     //
     // step 8 - output to KUKA .src file
