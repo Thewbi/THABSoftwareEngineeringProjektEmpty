@@ -147,6 +147,9 @@
     <ClInclude Include="process\FilterPositionProcessStep.h">
       <Filter>Header Files\process</Filter>
     </ClInclude>
+    <ClInclude Include="math\double_math.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="process\ExampleProcessStep.cpp">
@@ -205,6 +208,9 @@
     </ClCompile>
     <ClCompile Include="process\FilterPositionProcessStep.cpp">
       <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="math\double_math.cpp">
+      <Filter>Source Files\math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

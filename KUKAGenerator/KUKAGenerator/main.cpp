@@ -27,6 +27,7 @@
 #include <OutputToKUKASrcFileProcessStep.h>
 #include <OutputToFileCallback.h>
 #include <velocity.h>
+#include <double_math.h>
 
 // when the following define is present (line is not removed/commented) then
 // the user interface interaction via the command line is executed.
@@ -235,7 +236,7 @@ int main()
     {
         // with a velocity of 0.0 the robot arm will not move, so set it to a default value
         double vel = process_context.user_defined_velocity;
-        if (float_compare(0.0, process_context.user_defined_velocity))
+        if (kuka_generator::double_compare(0.0, process_context.user_defined_velocity))
         {
             vel = 0.5;
         }

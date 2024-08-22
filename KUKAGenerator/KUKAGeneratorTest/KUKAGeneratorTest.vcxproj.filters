@@ -31,6 +31,9 @@
     <Filter Include="Source Files\process">
       <UniqueIdentifier>{56e2ba1e-4845-4c95-8d3e-e84d79fffd9b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{5b959715-47ee-43b9-840d-e2ff2b4e6f2a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KUKAGeneratorTest.cpp">
@@ -65,6 +68,9 @@
     </ClCompile>
     <ClCompile Include="process\FilterOrientationProcessStepTest.cpp">
       <Filter>Source Files\process</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Vector3dTest.cpp">
+      <Filter>Source Files\math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

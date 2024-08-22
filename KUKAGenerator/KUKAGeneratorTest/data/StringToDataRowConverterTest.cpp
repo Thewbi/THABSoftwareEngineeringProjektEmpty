@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include <StringToDataRowConverter.h>
-#include <float_math.h>
+#include <double_math.h>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -120,25 +120,25 @@ namespace StringToDataRowConverterTest
 
             Assert::AreEqual(13261L, data_row.timestamp);
 
-            Assert::IsTrue(float_compare(1021.71f, data_row.position.x, 1.0e-02));
-            Assert::IsTrue(float_compare(-547.19f, data_row.position.y, 1.0e-02));
-            Assert::IsTrue(float_compare(632.80f, data_row.position.z, 1.0e-02));
+            Assert::IsTrue(kuka_generator::double_compare(1021.71f, data_row.position.x, 1.0e-02));
+            Assert::IsTrue(kuka_generator::double_compare(-547.19f, data_row.position.y, 1.0e-02));
+            Assert::IsTrue(kuka_generator::double_compare(632.80f, data_row.position.z, 1.0e-02));
 
             Assert::AreEqual(0.0, data_row.position_filtered.x);
             Assert::AreEqual(0.0, data_row.position_filtered.y);
             Assert::AreEqual(0.0, data_row.position_filtered.z);
 
-            Assert::IsTrue(float_compare(-0.13f, data_row.orientation.data[0], 1.0e-02));
-            Assert::IsTrue(float_compare(-0.98f, data_row.orientation.data[1], 1.0e-02));
-            Assert::IsTrue(float_compare(0.12f, data_row.orientation.data[2], 1.0e-02));
+            Assert::IsTrue(kuka_generator::double_compare(-0.13f, data_row.orientation.data[0], 1.0e-02));
+            Assert::IsTrue(kuka_generator::double_compare(-0.98f, data_row.orientation.data[1], 1.0e-02));
+            Assert::IsTrue(kuka_generator::double_compare(0.12f, data_row.orientation.data[2], 1.0e-02));
 
-            Assert::IsTrue(float_compare(-0.97f, data_row.orientation.data[3], 1.0e-02));
-            Assert::IsTrue(float_compare(0.14f, data_row.orientation.data[4], 1.0e-02));
-            Assert::IsTrue(float_compare(0.14f, data_row.orientation.data[5], 1.0e-02));
+            Assert::IsTrue(kuka_generator::double_compare(-0.97f, data_row.orientation.data[3], 1.0e-02));
+            Assert::IsTrue(kuka_generator::double_compare(0.14f, data_row.orientation.data[4], 1.0e-02));
+            Assert::IsTrue(kuka_generator::double_compare(0.14f, data_row.orientation.data[5], 1.0e-02));
 
-            Assert::IsTrue(float_compare(-0.16f, data_row.orientation.data[6], 1.0e-02));
-            Assert::IsTrue(float_compare(-0.09f, data_row.orientation.data[7], 1.0e-02));
-            Assert::IsTrue(float_compare(-0.98f, data_row.orientation.data[8], 1.0e-02));
+            Assert::IsTrue(kuka_generator::double_compare(-0.16f, data_row.orientation.data[6], 1.0e-02));
+            Assert::IsTrue(kuka_generator::double_compare(-0.09f, data_row.orientation.data[7], 1.0e-02));
+            Assert::IsTrue(kuka_generator::double_compare(-0.98f, data_row.orientation.data[8], 1.0e-02));
 
             Assert::AreEqual(1.0, data_row.orientation_filtered.data[0]);
             Assert::AreEqual(0.0, data_row.orientation_filtered.data[1]);

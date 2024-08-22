@@ -6,6 +6,7 @@
 #include <OutputToKUKASrcFileProcessStep.h>
 #include <IOutputToFileCallback.h>
 #include <TestOutputToFileCallback.h>
+#include <double_math.h>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

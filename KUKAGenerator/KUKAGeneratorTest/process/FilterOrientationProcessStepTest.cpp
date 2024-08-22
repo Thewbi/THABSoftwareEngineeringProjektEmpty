@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include <FilterOrientationProcessStep.h>
-#include <float_math.h>
+#include <double_math.h>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -197,54 +197,54 @@ namespace FilterOrientationProcessStepTest
             // Assert
 
             // the filtered value is the same as the original data since the window has a size of 1
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(0).orientation_filtered.data[0]));
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(0).orientation_filtered.data[1]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(0).orientation_filtered.data[0]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(0).orientation_filtered.data[1]));
             Assert::AreEqual(0.0, process_context.data_rows.at(0).orientation_filtered.data[2]);
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(0).orientation_filtered.data[3]));
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(0).orientation_filtered.data[4]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(0).orientation_filtered.data[3]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(0).orientation_filtered.data[4]));
             Assert::AreEqual(0.0, process_context.data_rows.at(0).orientation_filtered.data[5]);
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(0).orientation_filtered.data[6]));
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(0).orientation_filtered.data[7]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(0).orientation_filtered.data[6]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(0).orientation_filtered.data[7]));
             Assert::AreEqual(0.0, process_context.data_rows.at(0).orientation_filtered.data[8]);
 
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(1).orientation_filtered.data[0]));
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(1).orientation_filtered.data[1]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(1).orientation_filtered.data[0]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(1).orientation_filtered.data[1]));
             Assert::AreEqual(0.0, process_context.data_rows.at(1).orientation_filtered.data[2]);
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(1).orientation_filtered.data[3]));
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(1).orientation_filtered.data[4]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(1).orientation_filtered.data[3]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(1).orientation_filtered.data[4]));
             Assert::AreEqual(0.0, process_context.data_rows.at(1).orientation_filtered.data[5]);
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(1).orientation_filtered.data[6]));
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(1).orientation_filtered.data[7]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(1).orientation_filtered.data[6]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(1).orientation_filtered.data[7]));
             Assert::AreEqual(0.0, process_context.data_rows.at(1).orientation_filtered.data[8]);
 
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(2).orientation_filtered.data[0]));
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(2).orientation_filtered.data[1]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(2).orientation_filtered.data[0]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(2).orientation_filtered.data[1]));
             Assert::AreEqual(0.0, process_context.data_rows.at(2).orientation_filtered.data[2]);
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(2).orientation_filtered.data[3]));
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(2).orientation_filtered.data[4]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(2).orientation_filtered.data[3]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(2).orientation_filtered.data[4]));
             Assert::AreEqual(0.0, process_context.data_rows.at(2).orientation_filtered.data[5]);
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(2).orientation_filtered.data[6]));
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(2).orientation_filtered.data[7]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(2).orientation_filtered.data[6]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(2).orientation_filtered.data[7]));
             Assert::AreEqual(0.0, process_context.data_rows.at(2).orientation_filtered.data[8]);
 
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(3).orientation_filtered.data[0]));
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(3).orientation_filtered.data[1]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(3).orientation_filtered.data[0]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(3).orientation_filtered.data[1]));
             Assert::AreEqual(0.0, process_context.data_rows.at(3).orientation_filtered.data[2]);
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(3).orientation_filtered.data[3]));
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(3).orientation_filtered.data[4]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(3).orientation_filtered.data[3]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(3).orientation_filtered.data[4]));
             Assert::AreEqual(0.0, process_context.data_rows.at(3).orientation_filtered.data[5]);
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(3).orientation_filtered.data[6]));
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(3).orientation_filtered.data[7]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(3).orientation_filtered.data[6]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(3).orientation_filtered.data[7]));
             Assert::AreEqual(0.0, process_context.data_rows.at(3).orientation_filtered.data[8]);
 
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(4).orientation_filtered.data[0]));
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(4).orientation_filtered.data[1]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(4).orientation_filtered.data[0]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(4).orientation_filtered.data[1]));
             Assert::AreEqual(0.0, process_context.data_rows.at(4).orientation_filtered.data[2]);
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(4).orientation_filtered.data[3]));
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(4).orientation_filtered.data[4]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(4).orientation_filtered.data[3]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(4).orientation_filtered.data[4]));
             Assert::AreEqual(0.0, process_context.data_rows.at(4).orientation_filtered.data[5]);
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(4).orientation_filtered.data[6]));
-            Assert::IsTrue(float_compare(0.57735, process_context.data_rows.at(4).orientation_filtered.data[7]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(4).orientation_filtered.data[6]));
+            Assert::IsTrue(kuka_generator::double_compare(0.57735, process_context.data_rows.at(4).orientation_filtered.data[7]));
             Assert::AreEqual(0.0, process_context.data_rows.at(4).orientation_filtered.data[8]);
 
             // no error occured

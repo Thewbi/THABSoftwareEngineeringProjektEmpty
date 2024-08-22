@@ -5,7 +5,7 @@
 
 #include <IProcessStep.h>
 #include <IOutputToFileCallback.h>
-#include <float_math.h>
+#include <double_math.h>
 
 namespace kuka_generator
 {

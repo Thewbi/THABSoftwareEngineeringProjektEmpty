@@ -62,7 +62,7 @@ namespace kuka_generator
             }
 
             // do not output the velocity if it is already set or if it is zero
-            if (!float_compare(velocity, data_row.velocity) && !float_compare(0.0, data_row.velocity))
+            if (!kuka_generator::double_compare(velocity, data_row.velocity) && !kuka_generator::double_compare(0.0, data_row.velocity))
             {
                 // output velocity
                 output_velocity(data_row.velocity);

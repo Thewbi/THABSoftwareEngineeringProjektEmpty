@@ -168,6 +168,7 @@
     <ClCompile Include="file_handling\TestToLineFileReaderCallback.cpp" />
     <ClCompile Include="file_handling\ToLineFileReaderTest.cpp" />
     <ClCompile Include="KUKAGeneratorTest.cpp" />
+    <ClCompile Include="math\Vector3dTest.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -31,14 +31,43 @@ namespace kuka_generator
         /// <param name="z">z coordinate</param>
         Vector3d(double x, double y, double z);
 
+        /// <summary>
+        /// Set the vector's components.
+        /// </summary>
+        /// <param name="x">Value for the x component.</param>
+        /// <param name="y">Value for the y component.</param>
+        /// <param name="z">Value for the z component.</param>
         void set_values(double x, double y, double z);
 
+        /// <summary>
+        /// Compute the distance between this vector interpreted 
+        /// as a location vector and the the provided vector.
+        /// </summary>
+        /// <param name="point">The other location vector.</param>
+        /// <returns>The distance between the two points.</returns>
         double distanceTo(Vector3d& point);
 
+        /// <summary>
+        /// Will keep the orientation of the vector but change the
+        /// length of the vector to 1.0
+        /// </summary>
         void normalize();
 
+        /// <summary>
+        /// Returns a vector that is the result of the cross product
+        /// computation between this vector and the other vector
+        /// specified by the rhs parameter.
+        /// </summary>
+        /// <param name="rhs">The other vector to compute the cross product with.</param>
+        /// <returns></returns>
         Vector3d cross_product(const Vector3d& rhs);
 
+        /// <summary>
+        /// Provides the array indexer operator for the vector data type.
+        /// </summary>
+        /// <param name="i">index into the array</param>
+        /// <returns>returns the x, y or z value stored in the vector given
+        /// the indexes 0, 1 and 2 respectively.</returns>
         double& operator[](unsigned int i)
         {
             if (i == 0)
@@ -55,7 +84,11 @@ namespace kuka_generator
             }
         }
 
-        // user-defined copy assignment
+        /// <summary>
+        /// user-defined copy assignment
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         Vector3d& operator=(Vector3d other)
         {
             x = other.x;
@@ -65,6 +98,11 @@ namespace kuka_generator
             return *this;
         }
 
+        /// <summary>
+        /// Add-assignment operator
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         Vector3d& operator+= (const Vector3d& other)
         {
             x += other.x;
