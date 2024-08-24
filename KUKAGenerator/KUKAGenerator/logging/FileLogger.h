@@ -39,6 +39,11 @@ namespace kuka_generator
         void trace(std::string line) override;
 
         /// <summary>
+        /// Write out buffered data.
+        /// </summary>
+        void flush() override;
+
+        /// <summary>
         /// Creates folders contained in the path
         /// </summary>
         /// <param name="filepath"></param>

@@ -8,6 +8,14 @@ void kuka_generator::FileLogger::trace(std::string line)
     }
 }
 
+void kuka_generator::FileLogger::flush()
+{
+    if (active)
+    {
+        ofstream.flush();
+    }
+}
+
 void kuka_generator::FileLogger::create_folders(std::string filepath)
 {
     // https://stackoverflow.com/questions/62256738/visual-studio-2019-c-and-stdfilesystem

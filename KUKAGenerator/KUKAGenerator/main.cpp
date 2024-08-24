@@ -62,6 +62,8 @@ void trace_data_rows(kuka_generator::ILogger& log, std::string label, kuka_gener
             idx++;
         }
     }
+
+    log.flush();
 }
 
 /// <summary>

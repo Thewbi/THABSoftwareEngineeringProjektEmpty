@@ -14,7 +14,16 @@ namespace kuka_generator
 
         virtual ~ILogger() {}
 
+        /// <summary>
+        /// Output a line using trace level.
+        /// </summary>
+        /// <param name="line">a line to trace into the destination</param>
         virtual void trace(const std::string line) = 0;
+
+        /// <summary>
+        /// Write out buffered data.
+        /// </summary>
+        virtual void flush() = 0;
 
     };
 }
