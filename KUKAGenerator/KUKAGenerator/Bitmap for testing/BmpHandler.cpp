@@ -130,7 +130,7 @@ void CBmpHandler::drawOnBitmap(vector<kuka_generator::DataRow>& Segments, Bitmap
     case lineConnect:
     {
 
-        unsigned int x1, x2, y1, y2;
+        double x1, x2, y1, y2;
 
 
         double colorInc = 255.0 / Segments.size();
@@ -156,7 +156,7 @@ void CBmpHandler::drawOnBitmap(vector<kuka_generator::DataRow>& Segments, Bitmap
 
             draw.pen_color((unsigned char)r, (unsigned char)g, (unsigned char)b);
 
-            draw.circle(x1, y1, 4);
+            draw.circle((int)x1, (int)y1, 4);
 
             if (firstPixel)
             {
@@ -166,7 +166,7 @@ void CBmpHandler::drawOnBitmap(vector<kuka_generator::DataRow>& Segments, Bitmap
             }
 
             draw.pen_color((unsigned char)r, (unsigned char)g, (unsigned char)b);
-            draw.line_segment(x1, y1, x2, y2);
+            draw.line_segment((int)x1, (int)y1, (int)x2, (int)y2);
 
             r += colorInc;
         }
@@ -177,7 +177,7 @@ void CBmpHandler::drawOnBitmap(vector<kuka_generator::DataRow>& Segments, Bitmap
             }
         */
 
-        draw.rectangle(x2 - 3, y2 - 3, x2 + 3, y2 + 3);
+        draw.rectangle((int)x2 - 3, (int)y2 - 3, (int)x2 + 3, (int)y2 + 3);
     }
     break;
 
@@ -199,7 +199,7 @@ void CBmpHandler::drawOnBitmap(vector<kuka_generator::DataRow>& Segments, Bitmap
 
             draw.pen_color((unsigned char)r, (unsigned char)g, (unsigned char)b);
 
-            draw.plot_pixel(itr->position_filtered.x, itr->position_filtered.y);
+            draw.plot_pixel((int)itr->position_filtered.x, (int)itr->position_filtered.y);
 
             if (firstPixel)
             {

@@ -14,6 +14,8 @@
 #include <string>
 #include <stdlib.h>
 
+#include <common.h>
+#include <FileLogger.h>
 #include <DataRow.h>
 #include <DP.h>
 #include <CopyFilterProcessStep.h>
@@ -45,15 +47,78 @@ using namespace std;
 // Each step is allowed to add or remove information to or from the process context.
 kuka_generator::ProcessContext process_context;
 
-double to_positive_angle(double angle)
+void trace_data_rows(kuka_generator::ILogger& log, std::string label, kuka_generator::ProcessContext& process_context, bool filter_alive)
 {
-    angle = fmod(angle, 360);
-    if (angle < 0) angle += 360;
-    return angle;
+    log.trace("\n");
+    log.trace("==================================================================\n");
+    log.trace(label + "\n");
+    log.trace("==================================================================\n");
+    uint16_t idx = 0;
+    for (kuka_generator::DataRow& data_row : process_context.data_rows)
+    {
+        if (!filter_alive || data_row.alive)
+        {
+            log.trace(std::to_string(idx) + ") " + data_row.to_string() + "\n");
+            idx++;
+        }
+    }
 }
 
-int main()
+/// <summary>
+/// This is the main entry point of the application where windows will start
+/// executing this application.
+///
+/// To add command line arguments from within VisualStudio Community Edition 2022,
+/// open the properties of the project > Configuration Propeties > Debugging >
+/// Command Arguments > add your command line arguments here.
+/// e.g. -tracefile C:\Users\wolfg\Desktop\kuka_generator_trace.txt
+/// </summary>
+/// <param name="argc"></param>
+/// <param name="argv"></param>
+/// <returns></returns>
+int main(int argc, char* argv[])
 {
+    //
+    // Parse Command Line parameters
+    //
+
+    bool activate_logging{ false };
+    std::string logging_file;
+
+    // the first parameter is the command that the user has entered to start this application
+    // from the command line
+    if (argc > 1)
+    {
+        // Assumption: paraemeters always come in key-value-pairs (= two parameters per entry)
+        for (int i = 1; i < argc; i += 2)
+        {
+            std::string key(argv[i]);
+            std::string value(argv[i + 1]);
+
+            std::cout << "Key: " << key << " Value: " << value << std::endl;
+
+            if (kuka_generator::equals_ignore_case(key, "-tracefile"))
+            {
+                // activate logging
+                activate_logging = true;
+                logging_file = value;
+            }
+        }
+    }
+
+    //
+    // Logging
+    //
+
+    kuka_generator::FileLogger log;
+
+    if (activate_logging)
+    {
+        log.active = true;
+        log.create_folders(logging_file);
+        log.open_file(logging_file);
+    }
+
     //
     // Create all steps - this is where all instances are created so that they
     // can be used to run the application later
@@ -71,6 +136,8 @@ int main()
     // 
     // create the LoadInputFileStep and insert it into the vector
     // pass the process context into the constructor
+    //
+
     kuka_generator::LoadInputFileProcessStep load_input_file_process_step(process_context);
 
     //
@@ -138,6 +205,20 @@ int main()
     process_context.length_filter_orientation = 5;
 #endif
 
+    // trace user input
+    log.trace("==================================================================\n");
+    log.trace("Step 1 - User Input\n");
+    log.trace("==================================================================\n");
+    log.trace("InputFile: " + process_context.input_file + "\n");
+    log.trace("OutputFile: " + process_context.output_file + "\n");
+    log.trace("UseUserDefinedOrientation: " + std::to_string(process_context.use_user_defined_orientation) + "\n");
+    log.trace("UserDefinedOrientation: " + process_context.user_defined_orientation.to_string() + "\n");
+    log.trace("UseUserDefinedVelocity: " + std::to_string(process_context.use_user_defined_velocity) + "\n");
+    log.trace("UserDefinedVelocity: " + std::to_string(process_context.user_defined_velocity) + "\n");
+    log.trace("LengthFilterOrientation: " + std::to_string(process_context.length_filter_orientation) + "\n");
+    log.trace("LengthFilterPosition: " + std::to_string(process_context.length_filter_position) + "\n");
+    log.trace("DouglasPeuckerMaxDistance: " + std::to_string(process_context.douglas_peucker_max_distance) + "\n");
+
     //
     // step 2 - load file into the process context
     //
@@ -148,9 +229,15 @@ int main()
         std::cout << "[ERROR] Anwendung wird abgebrochen!" << std::endl;
         std::cout << "[ERROR] Ursache ist, dass das Einlesen der Datendatei " << process_context.input_file << " nicht moeglich war!" << std::endl;
 
+        log.trace("[ERROR] Anwendung wird abgebrochen!");
+        log.trace("[ERROR] Ursache ist, dass das Einlesen der Datendatei " + process_context.input_file + " nicht moeglich war!");
+
         // return 2 to show that step 2 failed
         return 2;
     }
+
+    bool filter_alive = true;
+    trace_data_rows(log, "Step 2 - Load Input File", process_context, filter_alive);
 
     //
     // step 3 - filter position
@@ -158,11 +245,15 @@ int main()
 
     filter_position_process_step.process();
 
+    trace_data_rows(log, "Step 3 - Filter Position", process_context, filter_alive);
+
     //
     // step 4 - filter orientation
     //
 
     filter_orientation_process_step.process();
+
+    trace_data_rows(log, "Step 4 - Filter Orientation", process_context, filter_alive);
 
     //
     // step 5 - Douglas Peucker (Remove Points)
@@ -181,6 +272,8 @@ int main()
         [](const kuka_generator::DataRow& obj) { return obj.alive; });
 
     std::cout << "Total: " << total_count << " after Douglas-Peucker: " << not_deleted_count << std::endl;
+
+    trace_data_rows(log, "Step 5 - Douglas Peucker", process_context, filter_alive);
 
     //
     // step 6 - Matrix to Euler Angles
@@ -213,19 +306,21 @@ int main()
             // B = −asin R31
             data_row.euler_angles.y = -1.0 * asin(data_row.orientation_filtered[6]);
             data_row.euler_angles.y = data_row.euler_angles.y * 180.0f / M_PI;
-            data_row.euler_angles.y = to_positive_angle(data_row.euler_angles.y);
+            data_row.euler_angles.y = kuka_generator::to_positive_angle(data_row.euler_angles.y);
 
             // A = atan2 R21, R11
             data_row.euler_angles.x = 1.0 * atan2(data_row.orientation_filtered[3], data_row.orientation_filtered[0]);
             data_row.euler_angles.x = data_row.euler_angles.x * 180.0f / M_PI;
-            data_row.euler_angles.x = to_positive_angle(data_row.euler_angles.x);
+            data_row.euler_angles.x = kuka_generator::to_positive_angle(data_row.euler_angles.x);
 
             // C = atan2 R32, R33
             data_row.euler_angles.z = 1.0 * atan2(data_row.orientation_filtered[7], data_row.orientation_filtered[8]);
             data_row.euler_angles.z = data_row.euler_angles.z * 180.0f / M_PI;
-            data_row.euler_angles.z = to_positive_angle(data_row.euler_angles.z);
+            data_row.euler_angles.z = kuka_generator::to_positive_angle(data_row.euler_angles.z);
         }
     }
+
+    trace_data_rows(log, "Step 6 - Matrix to Euler Angles", process_context, filter_alive);
 
     //
     // step 7 - compute speed
@@ -253,11 +348,27 @@ int main()
         c_velo.getvelocity(process_context.data_rows, process_context.data_rows.begin(), lastItr);
     }
 
+    trace_data_rows(log, "Step 7 - Compute Speed", process_context, filter_alive);
+
     //
     // step 8 - output to KUKA .src file
     //
 
     output_to_KUKA_src_file_process_step.process();
+
+    log.trace("\n");
+    log.trace("==================================================================\n");
+    log.trace("Step 8 - Output to KUKA .src file\n");
+    log.trace("==================================================================\n");
+
+    //
+    // Done
+    //
+
+    log.trace("\n");
+    log.trace("==================================================================\n");
+    log.trace("Application done!\n");
+    log.trace("==================================================================\n");
 
     //
     // DEBUG - graphical output - this is an optional output for testing
@@ -268,6 +379,9 @@ int main()
     {
         data_rows_for_graphics.push_back(data_row);
     }
+
+    // turn off logging
+    log.close_file();
 
     // start the optional graphical output for debugging
     start_graphical_output();

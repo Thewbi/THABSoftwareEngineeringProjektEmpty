@@ -2,7 +2,7 @@
 
 namespace kuka_generator
 {
-    constexpr unsigned int MATRIX_3X3D_ELEMENT_COUNT = 9;
+    constexpr unsigned int MATRIX_3X3F_ELEMENT_COUNT = 9;
 
     /// <summary>
     /// https://de.mathworks.com/help/matlab/math/basic-matrix-operations.html
@@ -23,7 +23,7 @@ namespace kuka_generator
 
     public:
 
-        double data[MATRIX_3X3D_ELEMENT_COUNT]{ 0.0 };
+        double data[MATRIX_3X3F_ELEMENT_COUNT]{ 0.0 };
 
         /// <summary>
         /// The default constructor. This constructor creates the identity matrix
@@ -77,7 +77,7 @@ namespace kuka_generator
         /// <returns></returns>
         Matrix3x3d& operator=(const Matrix3x3d& rhs)
         {
-            for (int i = 0; i < MATRIX_3X3D_ELEMENT_COUNT; i++)
+            for (int i = 0; i < MATRIX_3X3F_ELEMENT_COUNT; i++)
             {
                 data[i] = rhs.data[i];
             }
@@ -91,10 +91,23 @@ namespace kuka_generator
         /// <returns></returns>
         double& operator[](unsigned int i)
         {
-            if (i < MATRIX_3X3D_ELEMENT_COUNT)
+            if (i < MATRIX_3X3F_ELEMENT_COUNT)
             {
                 return data[i];
             }
+            return data[0];
+        }
+
+        std::string to_string()
+        {
+            std::string result = "";
+            for (int i = 0; i < MATRIX_3X3F_ELEMENT_COUNT; i++)
+            {
+                result += std::to_string(data[i]);
+                result += " ";
+            }
+
+            return result;
         }
 
     };

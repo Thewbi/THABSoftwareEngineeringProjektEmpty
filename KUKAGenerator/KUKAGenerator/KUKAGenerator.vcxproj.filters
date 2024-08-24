@@ -67,6 +67,18 @@
     <Filter Include="Source Files\velocity">
       <UniqueIdentifier>{0818a7ba-2430-4477-8cdf-146a16260ec9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\logging">
+      <UniqueIdentifier>{86ddfa2e-cc80-4f6a-969c-dc6cd672032d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\logging">
+      <UniqueIdentifier>{28bd8c84-6e1b-4902-bb99-efb00c998558}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\common">
+      <UniqueIdentifier>{73f57276-0535-45c0-a48c-10d8de2f7223}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common">
+      <UniqueIdentifier>{50e23d1a-8f74-4a06-a8f3-55b728d80c79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data\DataRow.h">
@@ -150,6 +162,15 @@
     <ClInclude Include="math\double_math.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
+    <ClInclude Include="logging\FileLogger.h">
+      <Filter>Header Files\logging</Filter>
+    </ClInclude>
+    <ClInclude Include="logging\ILogger.h">
+      <Filter>Header Files\logging</Filter>
+    </ClInclude>
+    <ClInclude Include="common\common.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="process\ExampleProcessStep.cpp">
@@ -211,6 +232,12 @@
     </ClCompile>
     <ClCompile Include="math\double_math.cpp">
       <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="logging\FileLogger.cpp">
+      <Filter>Source Files\logging</Filter>
+    </ClCompile>
+    <ClCompile Include="common\common.cpp">
+      <Filter>Source Files\common</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

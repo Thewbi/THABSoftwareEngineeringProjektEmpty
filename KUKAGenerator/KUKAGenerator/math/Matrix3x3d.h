@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace kuka_generator
 {
     constexpr unsigned int MATRIX_3X3F_ELEMENT_COUNT = 9;
@@ -95,6 +97,18 @@ namespace kuka_generator
             {
                 return data[i];
             }
+        }
+
+        std::string to_string()
+        {
+            std::string result = "";
+            for (int i = 0; i < MATRIX_3X3D_ELEMENT_COUNT; i++)
+            {
+                result += std::to_string(data[i]);
+                result += " ";
+            }
+
+            return result;
         }
 
     };

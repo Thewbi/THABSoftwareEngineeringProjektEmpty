@@ -44,5 +44,21 @@ namespace kuka_generator
 
         // resulting euler angles as mandated by the KAKA IRL output format
         Vector3d euler_angles;
+
+    public:
+
+        std::string to_string()
+        {
+            return "index: " + std::to_string(index)
+                + " timestamp: " + std::to_string(timestamp)
+                + " position: " + position.to_string()
+                + " position_filtered: " + position_filtered.to_string()
+                + " orientation: " + orientation.to_string()
+                + " orientation_filtered: " + orientation_filtered.to_string()
+                + " velocity: " + std::to_string(velocity)
+                + " alive: " + std::to_string(alive)
+                + " euler_angles: " + euler_angles.to_string()
+                ;
+        }
     };
 }

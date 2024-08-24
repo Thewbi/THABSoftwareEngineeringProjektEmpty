@@ -75,7 +75,7 @@
     <LibraryPath>$(SolutionDir)\glut-3.7.6-bin;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)\velocity;$(ProjectDir)\graphics;$(ProjectDir)\userinterface;$(ProjectDir)\math;$(ProjectDir)\data;$(ProjectDir)\process;$(ProjectDir)\file_handling;$(ProjectDir)\Douglas_Peucker;$(SolutionDir)\glut-3.7.6-bin;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\common;$(ProjectDir)\logging;$(ProjectDir)\velocity;$(ProjectDir)\graphics;$(ProjectDir)\userinterface;$(ProjectDir)\math;$(ProjectDir)\data;$(ProjectDir)\process;$(ProjectDir)\file_handling;$(ProjectDir)\Douglas_Peucker;$(SolutionDir)\glut-3.7.6-bin;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\glut-3.7.6-bin;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -140,6 +140,7 @@
   <ItemGroup>
     <ClInclude Include="Bitmap for testing\bitmap_image.h" />
     <ClInclude Include="Bitmap for testing\BmpHandler.h" />
+    <ClInclude Include="common\common.h" />
     <ClInclude Include="data\DataRow.h" />
     <ClInclude Include="data\StringToDataRowConverter.h" />
     <ClInclude Include="Douglas_Peucker\DP.h" />
@@ -149,6 +150,8 @@
     <ClInclude Include="file_handling\OutputToFileCallback.h" />
     <ClInclude Include="file_handling\ToLineFileReader.h" />
     <ClInclude Include="graphics\graphics.h" />
+    <ClInclude Include="logging\FileLogger.h" />
+    <ClInclude Include="logging\ILogger.h" />
     <ClInclude Include="math\double_math.h" />
     <ClInclude Include="math\float_math.h" />
     <ClInclude Include="math\Matrix3x3d.h" />
@@ -168,12 +171,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bitmap for testing\BmpHandler.cpp" />
+    <ClCompile Include="common\common.cpp" />
     <ClCompile Include="data\StringToDataRowConverter.cpp" />
     <ClCompile Include="Douglas_Peucker\DP.cpp" />
     <ClCompile Include="Douglas_Peucker\Line3D.cpp" />
     <ClCompile Include="file_handling\OutputToFileCallback.cpp" />
     <ClCompile Include="file_handling\ToLineFileReader.cpp" />
     <ClCompile Include="graphics\graphics.cpp" />
+    <ClCompile Include="logging\FileLogger.cpp" />
     <ClCompile Include="main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\process;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\math;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\file_handling;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\Douglas_Peucker;C:\Users\Marcel\Documents\Visual Studio 2022\Informatikprojekt\THABSoftwareEngineeringProjektEmpty\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\data;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
