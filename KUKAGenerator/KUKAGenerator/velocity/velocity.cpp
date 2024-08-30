@@ -80,7 +80,7 @@ namespace kuka_generator
             double divisor = ((itr->timestamp) - starttime);
             if (kuka_generator::double_compare(0.0, divisor))
             {
-                firstpoint->velocity = 0.5;
+                firstpoint->velocity = default_velocity;
             }
             else
             {

@@ -12,8 +12,11 @@
 
 namespace kuka_generator
 {
+
     class Cvelo
     {
+    private:
+        const double default_velocity = 0.2;
     public:
         void getvelocity(std::vector<kuka_generator::DataRow>& data_rows, std::vector<DataRow>::iterator startItr, std::vector<DataRow>::iterator endItr);
         Cvelo(void);

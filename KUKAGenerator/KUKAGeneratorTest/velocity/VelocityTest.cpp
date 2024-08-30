@@ -49,5 +49,26 @@ namespace VelocityTest
 
             Assert::IsTrue(kuka_generator::double_compare(data_rows.at(0).velocity, 200.438758));
         }
+
+        TEST_METHOD(DivideByZero_PreventCrash_UseDefaultValue_Test)
+        {
+            // Arrange
+
+            kuka_generator::Cvelo c_velo;
+
+            std::vector<kuka_generator::DataRow> data_rows;
+            add_point(data_rows, 1021.710788f, 547.198540f, 632.801115f, 0.0);
+            add_point(data_rows, 1021.710788f, 547.198540f, 632.801115f, 0.0);
+
+            // Act
+
+            // compute velocity from timestamp and locations stored in the data
+            std::vector<kuka_generator::DataRow>::iterator lastItr = std::prev(data_rows.end());
+            c_velo.getvelocity(data_rows, data_rows.begin(), lastItr);
+
+            // Assert
+
+            Assert::IsTrue(kuka_generator::double_compare(data_rows.at(0).velocity, 0.2));
+        }
     };
 }
