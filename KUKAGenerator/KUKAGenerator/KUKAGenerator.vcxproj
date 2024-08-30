@@ -75,7 +75,7 @@
     <LibraryPath>$(SolutionDir)\glut-3.7.6-bin;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)\common;$(ProjectDir)\logging;$(ProjectDir)\velocity;$(ProjectDir)\graphics;$(ProjectDir)\userinterface;$(ProjectDir)\math;$(ProjectDir)\data;$(ProjectDir)\process;$(ProjectDir)\file_handling;$(ProjectDir)\Douglas_Peucker;$(SolutionDir)\glut-3.7.6-bin;C:\Users\Admin\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\EulerAngles;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\EulerAngles;$(ProjectDir)\common;$(ProjectDir)\logging;$(ProjectDir)\velocity;$(ProjectDir)\graphics;$(ProjectDir)\userinterface;$(ProjectDir)\math;$(ProjectDir)\data;$(ProjectDir)\process;$(ProjectDir)\file_handling;$(ProjectDir)\Douglas_Peucker;$(SolutionDir)\glut-3.7.6-bin;C:\Users\Admin\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\EulerAngles;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\glut-3.7.6-bin;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

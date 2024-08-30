@@ -79,6 +79,12 @@
     <Filter Include="Source Files\common">
       <UniqueIdentifier>{50e23d1a-8f74-4a06-a8f3-55b728d80c79}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\EulerAngles">
+      <UniqueIdentifier>{506aa2c2-0a9c-4c87-b095-32aaf905006e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EulerAngles">
+      <UniqueIdentifier>{0a421fd5-0b74-4fcb-b3fa-5706f627a184}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data\DataRow.h">
@@ -172,7 +178,7 @@
       <Filter>Header Files\common</Filter>
     </ClInclude>
     <ClInclude Include="EulerAngles\Euler.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\EulerAngles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -243,7 +249,7 @@
       <Filter>Source Files\common</Filter>
     </ClCompile>
     <ClCompile Include="EulerAngles\Euler.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\EulerAngles</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
