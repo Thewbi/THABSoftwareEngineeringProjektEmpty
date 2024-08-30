@@ -178,6 +178,7 @@
     <ClCompile Include="process\FilterOrientationProcessStepTest.cpp" />
     <ClCompile Include="process\FilterPositionProcessStepTest.cpp" />
     <ClCompile Include="process\OutputToKUKASrcFileProcessStepTest.cpp" />
+    <ClCompile Include="velocity\VelocityTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="file_handling\TestOutputToFileCallback.h" />

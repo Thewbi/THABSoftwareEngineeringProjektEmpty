@@ -34,6 +34,9 @@
     <Filter Include="Source Files\math">
       <UniqueIdentifier>{5b959715-47ee-43b9-840d-e2ff2b4e6f2a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\velocity">
+      <UniqueIdentifier>{ebfc47c0-c4aa-48ae-91f2-af00cc760f58}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KUKAGeneratorTest.cpp">
@@ -71,6 +74,9 @@
     </ClCompile>
     <ClCompile Include="math\Vector3dTest.cpp">
       <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="velocity\VelocityTest.cpp">
+      <Filter>Source Files\velocity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

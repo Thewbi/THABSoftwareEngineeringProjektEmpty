@@ -1,21 +1,23 @@
 #pragma once
 
 #include <iostream>
-#include <Line3D.h>
+#include <vector>
 #include <list>
+#include <valarray>
+
+#include <Line3D.h>
 #include <math.h>
 #include <ProcessContext.h>
-#include <valarray>
-#include <vector>
+#include <double_math.h>
 
 namespace kuka_generator
 {
     class Cvelo
     {
-        public:
-            void getvelocity(std::vector<kuka_generator::DataRow>& data_rows, std::vector<DataRow>::iterator startItr, std::vector<DataRow>::iterator endItr);
-            Cvelo(void);
-            ~Cvelo(void);
+    public:
+        void getvelocity(std::vector<kuka_generator::DataRow>& data_rows, std::vector<DataRow>::iterator startItr, std::vector<DataRow>::iterator endItr);
+        Cvelo(void);
+        ~Cvelo(void);
 
     };
 }

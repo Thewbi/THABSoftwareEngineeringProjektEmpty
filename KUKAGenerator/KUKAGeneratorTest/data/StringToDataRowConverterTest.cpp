@@ -15,7 +15,7 @@ namespace StringToDataRowConverterTest
     {
         Assert::AreEqual(-1, data_row.index);
 
-        Assert::AreEqual(0L, data_row.timestamp);
+        Assert::IsTrue(kuka_generator::double_compare(0.0, data_row.timestamp));
 
         Assert::AreEqual(0.0, data_row.position.x);
         Assert::AreEqual(0.0, data_row.position.y);
@@ -118,7 +118,7 @@ namespace StringToDataRowConverterTest
 
             Assert::AreEqual(-1, data_row.index);
 
-            Assert::AreEqual(13261L, data_row.timestamp);
+            Assert::IsTrue(kuka_generator::double_compare(13261.420898, data_row.timestamp));
 
             Assert::IsTrue(kuka_generator::double_compare(1021.71f, data_row.position.x, 1.0e-02));
             Assert::IsTrue(kuka_generator::double_compare(-547.19f, data_row.position.y, 1.0e-02));

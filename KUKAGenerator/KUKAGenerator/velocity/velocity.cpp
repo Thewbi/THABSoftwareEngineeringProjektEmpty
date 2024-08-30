@@ -77,9 +77,16 @@ namespace kuka_generator
             double sum_of_squares = (distx * distx) + (disty * disty) + (distz + distz);
             double distlength = sqrt(abs(sum_of_squares));
 
-            double calcvelo = distlength / ((itr->timestamp) - starttime);
-
-            firstpoint->velocity = calcvelo;
+            double divisor = ((itr->timestamp) - starttime);
+            if (kuka_generator::double_compare(0.0, divisor))
+            {
+                firstpoint->velocity = 0.5;
+            }
+            else
+            {
+                double calcvelo = distlength / divisor;
+                firstpoint->velocity = calcvelo;
+            }
 
         } while (itr != endItr);
 

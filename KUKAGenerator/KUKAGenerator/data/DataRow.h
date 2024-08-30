@@ -17,7 +17,7 @@ namespace kuka_generator
         int index{ -1 };
 
         // timestamp, read from the input file
-        long timestamp{ 0 };
+        double timestamp{ 0 };
 
         // stores the unfiltered position (defined by either the user or read from the input file)
         Vector3d position;
