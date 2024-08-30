@@ -75,7 +75,7 @@
     <LibraryPath>$(SolutionDir)\glut-3.7.6-bin;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)\common;$(ProjectDir)\logging;$(ProjectDir)\velocity;$(ProjectDir)\graphics;$(ProjectDir)\userinterface;$(ProjectDir)\math;$(ProjectDir)\data;$(ProjectDir)\process;$(ProjectDir)\file_handling;$(ProjectDir)\Douglas_Peucker;$(SolutionDir)\glut-3.7.6-bin;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\common;$(ProjectDir)\logging;$(ProjectDir)\velocity;$(ProjectDir)\graphics;$(ProjectDir)\userinterface;$(ProjectDir)\math;$(ProjectDir)\data;$(ProjectDir)\process;$(ProjectDir)\file_handling;$(ProjectDir)\Douglas_Peucker;$(SolutionDir)\glut-3.7.6-bin;C:\Users\Admin\THABSoftwareEngineeringProjektEmpty\KUKAGenerator\KUKAGenerator\EulerAngles;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\glut-3.7.6-bin;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -145,6 +145,7 @@
     <ClInclude Include="data\StringToDataRowConverter.h" />
     <ClInclude Include="Douglas_Peucker\DP.h" />
     <ClInclude Include="Douglas_Peucker\Line3D.h" />
+    <ClInclude Include="EulerAngles\Euler.h" />
     <ClInclude Include="file_handling\IOutputToFileCallback.h" />
     <ClInclude Include="file_handling\IToLineFileReaderCallback.h" />
     <ClInclude Include="file_handling\OutputToFileCallback.h" />
@@ -175,6 +176,7 @@
     <ClCompile Include="data\StringToDataRowConverter.cpp" />
     <ClCompile Include="Douglas_Peucker\DP.cpp" />
     <ClCompile Include="Douglas_Peucker\Line3D.cpp" />
+    <ClCompile Include="EulerAngles\Euler.cpp" />
     <ClCompile Include="file_handling\OutputToFileCallback.cpp" />
     <ClCompile Include="file_handling\ToLineFileReader.cpp" />
     <ClCompile Include="graphics\graphics.cpp" />

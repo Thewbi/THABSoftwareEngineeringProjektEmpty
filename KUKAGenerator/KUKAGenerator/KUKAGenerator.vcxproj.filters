@@ -171,6 +171,9 @@
     <ClInclude Include="common\common.h">
       <Filter>Header Files\common</Filter>
     </ClInclude>
+    <ClInclude Include="EulerAngles\Euler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="process\ExampleProcessStep.cpp">
@@ -238,6 +241,9 @@
     </ClCompile>
     <ClCompile Include="common\common.cpp">
       <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="EulerAngles\Euler.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -30,6 +30,7 @@
 #include <OutputToFileCallback.h>
 #include <velocity.h>
 #include <double_math.h>
+#include <Euler.h>
 
 // when the following define is present (line is not removed/commented) then
 // the user interface interaction via the command line is executed.
@@ -166,11 +167,9 @@ int main(int argc, char* argv[])
 
     //
     // Step 6 - instantiate "Convert rotation matrix to euler angles" process step
-    //
 
-    // TODO
+    kuka_generator::EulerAnglesProcessStep euler_angles_process_step(process_context);
 
-    //
     // Step 7 - instantiate "Compute the velocity" process step
     //
 
@@ -220,7 +219,7 @@ int main(int argc, char* argv[])
     log.trace("LengthFilterOrientation: " + std::to_string(process_context.length_filter_orientation) + "\n");
     log.trace("LengthFilterPosition: " + std::to_string(process_context.length_filter_position) + "\n");
     log.trace("DouglasPeuckerMaxDistance: " + std::to_string(process_context.douglas_peucker_max_distance) + "\n");
-
+   
     //
     // step 2 - load file into the process context
     //
@@ -273,54 +272,14 @@ int main(int argc, char* argv[])
     size_t not_deleted_count = std::count_if(std::begin(process_context.data_rows), std::end(process_context.data_rows),
         [](const kuka_generator::DataRow& obj) { return obj.alive; });
 
-    std::cout << "Total: " << total_count << " after Douglas-Peucker: " << not_deleted_count << std::endl;
+    std::cout << "Total: " << total_count << " after Douglas-Peucker: " << not_deleted_count << std::endl << std::endl;
 
     trace_data_rows(log, "Step 5 - Douglas Peucker", process_context, filter_alive);
 
     //
     // step 6 - Matrix to Euler Angles
     //
-
-    for (kuka_generator::DataRow& data_row : process_context.data_rows)
-    {
-        data_row.euler_angles.x = 0.0;
-        data_row.euler_angles.y = 0.0;
-        data_row.euler_angles.z = 0.0;
-
-        if (data_row.orientation_filtered[6] == -1.0f)
-        {
-            throw 1;
-        }
-        else if (data_row.orientation_filtered[6] == 1.0f)
-        {
-            throw 2;
-        }
-        else
-        {
-            // R11 R12 R13
-            // R21 R22 R23
-            // R31 R32 R33
-
-            // [0] [1] [2]
-            // [3] [4] [5]
-            // [6] [7] [8]
-
-            // B = −asin R31
-            data_row.euler_angles.y = -1.0 * asin(data_row.orientation_filtered[6]);
-            data_row.euler_angles.y = data_row.euler_angles.y * 180.0f / M_PI;
-            data_row.euler_angles.y = kuka_generator::to_positive_angle(data_row.euler_angles.y);
-
-            // A = atan2 R21, R11
-            data_row.euler_angles.x = 1.0 * atan2(data_row.orientation_filtered[3], data_row.orientation_filtered[0]);
-            data_row.euler_angles.x = data_row.euler_angles.x * 180.0f / M_PI;
-            data_row.euler_angles.x = kuka_generator::to_positive_angle(data_row.euler_angles.x);
-
-            // C = atan2 R32, R33
-            data_row.euler_angles.z = 1.0 * atan2(data_row.orientation_filtered[7], data_row.orientation_filtered[8]);
-            data_row.euler_angles.z = data_row.euler_angles.z * 180.0f / M_PI;
-            data_row.euler_angles.z = kuka_generator::to_positive_angle(data_row.euler_angles.z);
-        }
-    }
+    euler_angles_process_step.process();
 
     trace_data_rows(log, "Step 6 - Matrix to Euler Angles", process_context, filter_alive);
 
