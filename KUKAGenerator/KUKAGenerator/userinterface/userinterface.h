@@ -2,7 +2,7 @@
 
 #include <cctype>
 #include <iostream>
-#include <iostream>
+#include <fstream>
 #include <sstream>
 #include <string>
 
@@ -36,6 +36,7 @@ namespace kuka_generator
         std::string user_defined_velocity; // variable to store userselection for velocity
         std::string user_defined_filter_orientation; // variable to store userselection for orientationfilter
         std::string user_defined_filter_position; // variable to store userselection for positionfilter
+        std::string user_defined_max_distance; // variable to store the maximum filter distance
 
     public:
 
@@ -46,8 +47,11 @@ namespace kuka_generator
         Userinterface(kuka_generator::ProcessContext& process_context);
         int checkinput(std::string& user_input);
         int checkpath(std::string& user_input);
+        int checkfile(std::string& user_input);
         int checkint(std::string& user_input);
         int checkdouble(std::string& user_input);
+        int checkpositivint(std::string& user_input);
+        int checkpositivdouble(std::string& user_input);
 
         /// <summary>
         /// Run this process
