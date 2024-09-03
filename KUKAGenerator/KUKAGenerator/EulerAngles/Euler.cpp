@@ -15,7 +15,7 @@ namespace kuka_generator
     int EulerAnglesProcessStep::process()
     {
         std::cout << "Step 6 - Euler Angles calculation has started." << std::endl;
-       
+
         for (DataRow& data_row : process_context_.data_rows)    //range basierte for Schleife
         {
             //Alle 3 Winkel mit Wert 0 initialisieren
@@ -23,7 +23,7 @@ namespace kuka_generator
             data_row.euler_angles.y = 0.0;
             data_row.euler_angles.z = 0.0;
 
-            if (data_row.orientation_filtered[6] == -1)
+            if (double_compare(data_row.orientation_filtered[6], -1.0))
             {
                 std::cout << "Ausnahme: Wert R31 von Element " << index; std::cout << " = -1!" << std::endl;     //Fall 1: R31 = -1
 
@@ -38,7 +38,7 @@ namespace kuka_generator
                 data_row.euler_angles.z = data_row.euler_angles.z * 180.0f / pi;
                 data_row.euler_angles.z = to_positive_angle(data_row.euler_angles.z);
             }
-            else if (data_row.orientation_filtered[6] == 1)
+            else if (double_compare(data_row.orientation_filtered[6], 1.0))
             {
                 std::cout << "Ausnahme: Wert R31 von Element " << index; std::cout << " = 1!" << std::endl;      //Fall 2: R31 = 1
 
@@ -75,7 +75,7 @@ namespace kuka_generator
                 data_row.euler_angles.z = to_positive_angle(data_row.euler_angles.z);
             }
 
-        index++;
+            index++;
         }
 
         std::cout << "Step 6 - Euler Angles calculation has finished." << std::endl << std::endl;
